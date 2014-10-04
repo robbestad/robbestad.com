@@ -14,7 +14,7 @@ var Masthead = require('./components/masthead.jsx');
 var Footer = require('./components/footer.jsx');
 var Menu = require('./components/menu.jsx');
 var Quiz = require('./components/quiz.jsx');
-var Search = require('./components/Search.jsx');
+var Search = require('./components/search.jsx');
 //var Sidebar = require('./components/sidebar.jsx');
 
 React.renderComponent(<MyComponent />, document.getElementById('content'));
