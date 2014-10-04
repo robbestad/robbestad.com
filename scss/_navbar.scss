@@ -1,0 +1,114 @@
+.Layout-topBar {
+  background: rgb(255, 255, 255);
+  border-bottom: 1px solid black;
+  line-height: 50px;
+  text-align: center;
+  position: fixed;
+}
+
+.Layout-hamburger {
+  font-size: 34px;
+  left: 0;
+  top: 0;
+  padding: 5px 15px 0 15px;
+  position: fixed;
+}
+
+.Layout-search {
+  font-size: 28px;
+  right: 15px;
+  top: 0;
+  padding: 7px 10px 0 2px;
+  position: fixed;
+}
+
+
+.Layout-content {
+//  height: 100%;
+
+}
+
+.Layout-nav {
+  background: #ccc;
+  border-bottom: rgba(100, 100, 100, 0.3);
+  height: 100%;
+  padding: 10px;
+
+}
+
+.Layout-navLink,
+.Layout-lastNavLink {
+  color: black;
+  display: block;
+  font-family: sans-serif;
+  padding: 10px 0;
+
+  text-decoration: none;
+}
+
+.Layout-navLink {
+  border-bottom: 1px solid rgba(20, 20, 20, 0.3);
+}
+
+.Header {
+  font-family: 'Lobster';
+  font-size: 16px;
+  text-align: center;
+  padding: 5px;
+  font-weight: bold;
+}
+
+
+#react-root {
+  height: 20px;
+  width: 0;
+}
+
+ul.slider{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.8rem;
+  display: block;
+  z-index: 0;
+
+  li{
+    border-bottom: 1px solid #d0d0d0;
+    padding: 10px;
+  }
+  h3{
+    font-size: 1.45rem;
+    text-decoration: dashed;
+    margin:0 0 5px 0;
+    padding: 5px;
+  }
+
+}
+
+ul.search{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.8rem;
+  display: block;
+  z-index: 0;
+
+  li{
+    border-bottom: none;
+    padding: 10px;
+  }
+  h3{
+    font-size: 1.45rem;
+    text-decoration: dashed;
+    margin:0 0 5px 0;
+    padding: 5px;
+  }
+
+  input{
+    width: 70%;
+    display: block;
+    border: 1px solid black;
+    padding: 0 0 0 5px;
+    border-radius: 0;
+  }
+}

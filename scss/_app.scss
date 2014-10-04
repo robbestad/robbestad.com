@@ -1,0 +1,128 @@
+@import '_variables';
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.article {
+  a {
+  font-weight: bold;
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+  body.firefox & { font-weight: normal; }
+ }
+}
+
+.singlearticle{
+  display:none;
+}
+.row{
+  display:inline-flex;
+  background-color: white;
+}
+.container-fluid{
+  height: 100%!important;
+  /* The html and body elements cannot have any padding or margin. */
+  background-color: #e0e0e0;
+
+}
+pre{
+  border:0;
+  padding:0;
+  background-color: transparent;
+
+}
+
+html, body {
+//  height: 100%!important;
+  /* The html and body elements cannot have any padding or margin. */
+  background-color: white;
+  font-family: 'Open Sans',sans-serif;
+}
+
+h2{
+  font-size:1.5rem;
+}
+
+h1{
+  font-size: 4rem;
+  font-family: 'Lobster',sans-serif;
+}
+
+.sidebar{
+  background-color: #e0e0e0;
+  z-index: 1;
+}
+.responsiveList{
+  -webkit-overflow-scroll: touch;
+  overflow-scroll:touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+a{
+  text-decoration: none;
+  color: #000000;
+}
+.container-fluid{
+  background-color: #e0e0e0;
+}
+.article{
+  background-color: white;
+  padding: 10px 10px 40px 20px;
+  border-radius: 5px 0 0 0;
+}
+
+@media only screen and (min-width: 1140px) {
+  .article{
+    border-radius: 5px 5px 0 0;
+  }
+}
+
+
+#disqus_thread{
+  margin-top:25px;
+}
+.innerXsPadding{
+  padding: 0 2px 0 20px ;
+}
+
+@media only screen and (max-width : 640px) {
+  .article{
+    background-color: white;
+    padding: 2px;
+    border-radius: 0 0 0 0;
+    margin-bottom: 30px;
+    overflow: hidden;
+  }
+  .innerXsPadding{
+    padding: 0 20px 0 20px ;
+  }
+  body{
+    font-family: 'Open Sans',sans-serif;
+    font-size:1.4rem;
+  }
+}
+
+@media only screen and (max-width : 320px) {
+  .article{
+    background-color: white;
+    padding: 2px;
+    border-radius: 0 0 0 0;
+    margin-bottom: 30px;
+    overflow: hidden;
+    max-width: 318px;
+    width: 318px;
+  }
+  .innerXsPadding{
+    padding: 0 15px 0 15px ;
+  }
+
+  body{
+    font-family: 'Open Sans',sans-serif;
+    font-size:1.4rem;
+
+  }
+}
+
+@import 'animate';

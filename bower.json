@@ -1,0 +1,25 @@
+{
+  "name": "robbestad",
+  "version": "1.0.0",
+  "authors": [
+    "Sven Anders Robbestad <anders@robbestad.com>"
+  ],
+  "description": "robbestad",
+  "main": "index.js",
+  "keywords": [
+    "robbestad"
+  ],
+  "license": "Private",
+  "homepage": "http://www.robbestad.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "devDependencies": {
+    "normalize-css": "~3.0.1",
+    "rebound-js": "https://github.com/facebook/rebound-js.git#~0.0.8"
+  }
+}
