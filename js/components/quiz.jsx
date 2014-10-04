@@ -1,6 +1,9 @@
 /** @jsx React.DOM */
 
 'use strict';
+var $ = require('jquery');
+
+
 var SetIntervalMixin = {
     componentWillMount: function() {
         this.intervals = [];

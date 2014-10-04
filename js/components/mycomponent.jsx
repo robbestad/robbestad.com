@@ -1,7 +1,6 @@
 /** @jsx React.DOM */
 
 'use strict';
-
 var React = require('react'),
 
     Mycomponent = React.createClass({

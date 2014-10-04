@@ -40,7 +40,7 @@ gulp.task('watch', function () {
 
 // paths
 var paths = {
-    scripts: ['./.build/js/libs.js', './.build/js/app.js'],
+    scripts: ['node_modules/jquery/dist/jquery.js','js/bundle.js','./.build/js/libs.js', './.build/js/app.js'],
     scss: ['./scss/main.scss'],
     css: ['node_modules/bootstrap/dist/css/bootstrap.css',
         'css/**/*',

@@ -2,7 +2,8 @@
 var express = require('express'),
     stormpath = require('express-stormpath'),
     swig  = require('swig'),
-    compress = require('compression');
+    compress = require('compression'),
+    $ = require('jquery');
 
 // Initialize our app
 var app = express();

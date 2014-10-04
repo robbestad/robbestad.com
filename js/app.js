@@ -5,7 +5,6 @@
 }());
 
 var React = require('react');
-var $ = require('jquery')(window);
 
 window.React = React;
 

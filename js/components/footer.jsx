@@ -4,6 +4,7 @@
 (function(){
     'use strict';
 })();
+var $ = require('jquery');
 
 var React = require('react'),
     Footer = React.createClass({

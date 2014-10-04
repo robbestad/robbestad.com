@@ -4,6 +4,7 @@
 'use strict';
 var Search = require('./search.jsx');
 var Sidebar = require('./sidebar.jsx');
+var $ = require('jquery');
 
 React.initializeTouchEvents(true);
 
@@ -292,7 +293,7 @@ var Menu = React.createClass({
     },
 
     render: function () {
-        var width = ((document.getElementById("App").clientWidth) / 3) - 2;
+        var width = ((document.getElementById("app").clientWidth) / 3) - 2;
         var reduceFactor=200;
         var padding=31;
         var opacity = this.state.scrollTop/reduceFactor <= 1.0 ? this.state.scrollTop/reduceFactor > 0.0 ? this.state.scrollTop/reduceFactor : 0.0 : 1.0;
@@ -312,7 +313,7 @@ var Menu = React.createClass({
             display: 'block',
             position: 'fixed',
             top: '0px',
-            width: document.getElementById("App").clientWidth+"px",
+            width: document.getElementById("app").clientWidth+"px",
             backgroundColor: '#f1f1f1',
             zIndex:'9999999',
             borderRadius: '5px',

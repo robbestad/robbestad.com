@@ -3,6 +3,8 @@
 (function(){
     'use strict';
 })();
+var $ = require('jquery');
+
 
 var SetIntervalMixin = {
     componentWillMount: function() {
