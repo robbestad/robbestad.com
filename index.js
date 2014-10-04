@@ -13,14 +13,6 @@ var css = ['node_modules/bootstrap/dist/css/bootstrap.css',
     js = ['node_modules/jquery/dist/jquery.js','js/bundle.js'],
     title = 'Fifth Floor';
 
-/*@TODO: look at & possible install
-  app.use(express.json());  
-  app.use(express.urlencoded());  
-  app.use(express.bodyParser());  
-  app.use(express.methodOverride());  
-  app.use(express.cookieParser());
-*/
-
 if ('production' == app.get('env')) {
   css = ['assets/bundle.min.css'],
   js = ['assets/bundle.min.js'];
