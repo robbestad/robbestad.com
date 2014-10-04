@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
-  <head>
-	<meta charset="utf-8">
-	<title>{{title}}</title>
-	{% for file in css %}
-		<link rel="stylesheet" href="{{file}}" type="text/css">
-	{% endfor %}
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    {% for file in css %}
+    <link rel="stylesheet" href="{{file}}" type="text/css">
+    {% endfor %}
     <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -22,18 +22,18 @@
     <script>
         WebFont.load({
             google: {
-                families: ['Lobster','Open Sans']
+                families: ['Lobster', 'Open Sans']
             }
         });
     </script>
-  </head>
-	<body>
+</head>
+<body>
 
-	<body id="App">
+<body id="App">
 <div id="layout"></div>
 <div id="masthead" class="hidden-xs"></div>
 <div id="menu" class="header hidden-sm hidden-md hidden-lg"></div>
-<div class="container-fluid"     >
+<div class="container-fluid">
     <div id="react-root"></div>
     <div class="header hidden-xs">
         <ul class="nav nav-pills pull-right">
@@ -43,29 +43,27 @@
         </ul>
         <a href="/">
 
-        <h1 class="text-muted" id="content">{{ pagename|title }}</h1>
+            <h1 class="text-muted" id="content">{{ pagename|title }}</h1>
         </a>
     </div>
 
-        <div class="row">
-        <div class="col-md-12">
-
-		<section id="myapp"></section>
+    <div class="row">
+        <div class="col-md-3 col-sm-3 hidden-xs sidebar">
         </div>
+        <div class="article col-sm-9 col-md-9 col-xs-12">
+            <div class="innerXsPadding">
+            </div>
         </div>
     </div>
-    
 
-    <footer id="myfooter"></footer>
+</div>
 
-		<!--<footer id="info">-->
-			<!--<p>My lovely web site</p>-->
 
-		<!--</footer>-->
-		{% for file in js %}
-			<script async type="text/javascript" src="{{file}}"></script>
-		{% endfor %}
+<footer id="myfooter"></footer>
 
-	</body>
-</html>
 
+{% for file in js %}
+<script async type="text/javascript" src="{{file}}"></script>
+{% endfor %}
+
+</body>
