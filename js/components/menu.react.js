@@ -3,8 +3,15 @@
  */
 'use strict';
 var Search = require('./search.jsx');
-var Sidebar = require('./sidebar.jsx');
-var $ = require('jquery');
+var Sidebar = require('./sidebar.react');
+//var $ = require('jquery');
+var Router = require('react-router');
+var Route = Router.Route;
+var DefaultRoute = Router.DefaultRoute;
+var Routes = Router.Routes;
+var Link = Router.Link;
+var NotFoundRoute = Router.NotFoundRoute;
+var BlogStore  = require('../stores/blog.react');
 
 React.initializeTouchEvents(true);
 
@@ -21,27 +28,47 @@ var SetIntervalMixin = {
 };
 
 var Menu = React.createClass({
-    mixins: [SetIntervalMixin], // Use the mixin
-    componentDidMount: function() {
-        this.setInterval(this.tick, 150); // Call a method on the mixin
-        this.fetchBlogData();
-
-    },
-
-    getInitialState: function(){
+    mixins: [SetIntervalMixin ],
+    getInitialState: function() {
         this.addResizeAttach();
+
         return {
-          overflow:true,
-          scrollPosition:{
-              0:0,1:0
-          },
-          width: document.body.clientWidth,
-          height: window.innerHeight,
-          sliderVisible:false,
-          searchVisible:false,
-          isFetching:false
-        }
+            blogLinks: BlogStore.getItems(),
+            loading: true,
+            overflow:true,
+            scrollPosition:{
+                0:0,1:0
+            },
+            width: document.body.clientWidth,
+            height: window.innerHeight,
+            sliderVisible:false,
+            searchVisible:false,
+            isFetching:false
+        };
     },
+
+    componentWillMount: function () {
+        BlogStore.init();
+    },
+
+    componentDidMount: function() {
+        BlogStore.addChangeListener(this.updateItems);
+        this.setInterval(this.tick, 150);
+    },
+
+    componentWillUnmount: function () {
+        BlogStore.removeChangeListener(this.updateItems);
+    },
+    updateItems: function (contacts) {
+        if (!this.isMounted())
+            return;
+
+        var state = this.state;
+        state.blogLinks= BlogStore.getItems();
+        state.loading = false;
+        this.setState(state);
+    },
+
     getDefaultProps: function(){
       return {
           blogData: [],
@@ -53,7 +80,10 @@ var Menu = React.createClass({
         var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
         var menuTop = document.getElementById("menu").style.position;
         if(undefined !== this.state.scrollPosition){
+
         this.replaceState({
+            blogLinks:BlogStore.getItems(),
+            loading:this.state.loading,
             scrollTop: scrollTop,
             menuTop:menuTop,
             width: window.innerWidth,
@@ -66,15 +96,18 @@ var Menu = React.createClass({
             sliderVisible:this.state.sliderVisible,
             height: window.innerHeight, overflow:this.state.overflow});
         }
-        if(undefined === this.props.getBlogTitles)
+        if(0 === this.props.blogData.length)
             this.setProps({ blogData: this.props.blogData, blogTitles: this.getBlogTitles()});
 
 
     },
 
     onResize: function(){
-        this.replaceState({ width: window.innerWidth,
-            height:window.innerHeight,searchVisible:this.state.searchVisible,
+        this.replaceState({
+            blogLinks:BlogStore.getItems(),
+            loading:this.state.loading,
+            width: window.innerWidth,
+            height:document.body.clientHeight,searchVisible:this.state.searchVisible,
             sliderVisible:this.state.sliderVisible});
             $("#disqus_thread").css("width",window.innerWidth+"px")
             if(window.innerWidth>=768){
@@ -84,8 +117,13 @@ var Menu = React.createClass({
                 if(this.state.sliderVisible){
                     this.toggleNavClick();
                 }
-                if(this.state.sliderVisible || this.state.sliderVisible)
-                    this.replaceState({searchVisible: false, sliderVisible: false });
+                if(this.state.sliderVisible || this.state.sliderVisible){
+                    var state=this.state;
+                    state.searchVisible=false;
+                    state.sliderVisible=false;
+
+                    this.setState(state);
+                }
             }
         },
     addResizeAttach: function() {
@@ -111,32 +149,38 @@ var Menu = React.createClass({
         }
     },
 
-    fetchBlogData: function(){
-        var react = this;
-        $.ajax({
-            url: "http://api.robbestad.com/robbestad",
-            crossDomain:true,
-            dataType: "json",
-            success:function(data,text,xhqr){
-                $.each(data, function(i, item) {
-                    if("object" === typeof item["robbestad"] ){
-                        react.setProps({ blogData: item["robbestad"], blogTitles: react.getBlogTitles()});
-                    }
-                });
-            }
-        });
-
-    },
+//    fetchBlogData: function(){
+//        var react = this;
+//        $.ajax({
+//            url: "http://api.robbestad.com/robbestad",
+//            crossDomain:true,
+//            dataType: "json",
+//            success:function(data,text,xhqr){
+//                $.each(data, function(i, item) {
+//                    if("object" === typeof item["robbestad"] ){
+//                        react.setProps({ blogData: item["robbestad"], blogTitles: react.getBlogTitles()});
+//                    }
+//                });
+//            }
+//        });
+//
+//    },
     getBlogTitles:function(){
         var results;
-        if(undefined !== this.props.blogData){
-            results = this.props.blogData;
+        if(undefined !== this.state.blogLinks){
+            results = this.state.blogLinks;
             var items='';
 
-            for(var i=0; i < this.props.blogData.length; i++)
-              items+= "<li key='" + i + "'><a href=\"/index.php?id="+this.props.blogData[i].id+"#nosplash\">" +
-                          this.props.blogData[i].title +
+//            var links = this.state.blogLinks.map(function(item) {
+//                return <li key={item.id}><Link to="article" params={item}>- {item.title}</Link></li>
+//            });
+//            return links;
+
+            for(var i=0; i < this.state.blogLinks.length; i++)
+                items+= "<li key='" + i + "'><a href=\"/#/article/"+this.state.blogLinks[i].id+"\">" +
+                          this.state.blogLinks[i].title +
                           "</a></li>" ;
+
             return items;
         } else {
             return 'Loading';
@@ -169,17 +213,7 @@ var Menu = React.createClass({
 
         if(undefined !== this.state.scrollPosition && this.isMobile()){
             window.scrollTo(this.state.scrollPosition[1], this.state.scrollPosition[0]);
-            //this.setState({
-            //    overflow:true,
-            //    scrollPosition:{
-            //        0:this.state.scrollPosition[0],
-            //        1:this.state.scrollPosition[1]
-            //    },
-            //    sliderVisible: false,
-            //    searchVisible: true,
-            //    width: 0,
-            //    height:0
-            //});
+
         }
     },
     toggleSearchClick: function(){
@@ -285,14 +319,23 @@ var Menu = React.createClass({
 
             }
             }
-        this.replaceState({sliderVisible: !this.state.sliderVisible,scrollPosition:{
+        var state=this.state;
+        state.sliderVisible=!this.state.sliderVisible;
+        state.scrollPosition={
             0:scrollPosition[1],
             1:scrollPosition[0]
-        }});
+        };
+
+        this.setState(state);
 
     },
 
     render: function () {
+//        var links = this.state.blogLinks.map(function(item) {
+//            return <li key={item.id}><Link to="article" params={item}>- {item.title}</Link></li>
+//        });
+
+
         var width = ((document.getElementById("App").clientWidth) / 3) - 2;
         var reduceFactor=200;
         var padding=31;
@@ -370,7 +413,7 @@ var Menu = React.createClass({
             height=0;
         }
         var inFront={
-            zIndex:999999
+            zIndex:99999999
         };
 
         var top=0;

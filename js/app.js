@@ -7,10 +7,10 @@
 var React = require('react');
 window.React = React;
 
-var App = require('./components/app.react.js');
+var App = require('./components/app.react');
 var Masthead = require('./components/masthead.jsx');
 var Footer = require('./components/footer.jsx');
-var Menu = require('./components/menu.jsx');
+var Menu = require('./components/menu.react');
 var Quiz = require('./components/quiz.jsx');
 var Search = require('./components/search.jsx');
 //var Sidebar = require('./components/sidebar.jsx');
@@ -21,8 +21,10 @@ var Routes = Router.Routes;
 var Link = Router.Link;
 var NotFoundRoute = Router.NotFoundRoute;
 var Article = require('./components/article.react');
+//var Layout = require('./layout/layout.react');
 
-//React.renderComponent(<Masthead myTitle="Robbestad.com" />, document.getElementById('masthead'));
+//React.renderComponent(<Masthead myTitle="Robbestad.com" />, document.getElementById('Mast'));
+//React.renderComponent(<Layout />, document.getElementById('Layout'));
 React.renderComponent(<Footer />, document.getElementById('Footer'));
 React.renderComponent(<Menu><Search /></Menu>, document.getElementById('Menu'));
 

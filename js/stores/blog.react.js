@@ -1,4 +1,5 @@
 
+//var api = 'http://myapi.dev/robbestad';
 var api = 'http://api.robbestad.com/robbestad';
 var _blogdata = {};
 var _changeListeners = [];

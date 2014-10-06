@@ -37,7 +37,7 @@ pre{
 html, body {
 //  height: 100%!important;
   /* The html and body elements cannot have any padding or margin. */
-  background-color: white;
+  background-color: #e0e0e0;
   font-family: 'Open Sans',sans-serif;
 }
 
@@ -87,12 +87,12 @@ a{
   padding: 0 2px 0 20px ;
 }
 
-@media only screen and (max-width : 640px) {
+@media only screen and (max-width : 768px) {
   .article{
-    background-color: white;
-    padding: 2px;
+    background-color: transparentize(#e0e0e0,.5);
+    padding: 50px 0 0 0;
     border-radius: 0 0 0 0;
-    margin-bottom: 30px;
+    margin-bottom: 48px;
     overflow: hidden;
   }
   .innerXsPadding{
@@ -102,14 +102,17 @@ a{
     font-family: 'Open Sans',sans-serif;
     font-size:1.4rem;
   }
+  .container-fluid{
+    padding:0;
+  }
 }
 
 @media only screen and (max-width : 320px) {
   .article{
-    background-color: white;
-    padding: 2px;
+    background-color: transparentize(#e0e0e0,.5);
+    padding: 50px 0 0 0;
     border-radius: 0 0 0 0;
-    margin-bottom: 30px;
+    margin-bottom: 48px;
     overflow: hidden;
     max-width: 318px;
     width: 318px;
@@ -121,7 +124,9 @@ a{
   body{
     font-family: 'Open Sans',sans-serif;
     font-size:1.4rem;
-
+  }
+  .container-fluid{
+    padding:0;
   }
 }
 

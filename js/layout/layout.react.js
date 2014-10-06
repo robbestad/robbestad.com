@@ -10,7 +10,7 @@ var RoutedLink = require('react-touch/lib/routing/RoutedLink');
 var LeftNavContainer = require('react-touch/lib/interactions/leftnav/LeftNavContainer');
 var SIDEBAR_WIDTH = 242;
 var TOPBAR_HEIGHT = 51; // + 1 for the border
-var Header = require('./Header.jsx');
+var Header = require('./../components/Header.jsx');
 
 var Layout = React.createClass({
     handleNavClick: function () {

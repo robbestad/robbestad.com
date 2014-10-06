@@ -11,8 +11,9 @@ var app = express();
 var css = ['node_modules/bootstrap/dist/css/bootstrap.css',
            'css/main.css'],
     js = ['node_modules/jquery/dist/jquery.js',
-//        'node_modules/react/dist/react.js',
-        'js/bundle.js'],
+        'js/bundle.js',
+        'bower_components/rebound-js/rebound.js',
+        'js/app-ready.js'],
     title = 'Fifth Floor';
 
 if ('production' == app.get('env')) {

@@ -15,12 +15,15 @@ var Article = React.createClass({
     return void 0;
     },
 
+
+
     render:function(){
+
         var article = BlogStore.getItem(this.props.params.id);
         var title = this.getProp(article,"title");
         var content = this.getProp(article,"content");
         var published = this.getProp(article,"published");
-        return (<div><h3>{title}</h3><section dangerouslySetInnerHTML={{__html: content}} /></div>)
+        return (<div id="articleId" ><h3>{title}</h3><section dangerouslySetInnerHTML={{__html: content}} /></div>)
     }
 });
 module.exports = Article;

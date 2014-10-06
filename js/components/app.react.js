@@ -43,12 +43,28 @@ var App = React.createClass({
         });
     },
 
+
+
     render: function() {
         var links = this.state.blogLinks.map(function(item) {
             return <h2 key={item.id}><Link to="article" params={item}>- {item.title}</Link></h2>
         });
+
         return (
             <section className="container-fluid">
+
+                <div className="header hidden-xs">
+                    <ul className="nav nav-pills pull-right">
+                        <li className="active"><a href="/index.php#nosplash">home</a></li>
+                        <li><a href="index.php?content=about#nosplash">about</a></li>
+                        <li><a href="mailto:anders@robbestad.com">contact</a></li>
+                    </ul>
+                    <a href="/">
+
+                        <h1 className="text-muted">title</h1>
+                    </a>
+                </div>
+
                 <div className="row-fluid">
                 <div className="sidebar col-sm-4 col-md-3 col-lg-3 hidden-xs">
                     <div id="content">{links}</div>
