@@ -31,7 +31,9 @@
     "swig": "^1.4.2",
     "resolve": "~0.6.1",
     "uglify-js": "~2.4.15",
-    "watchify": "~0.10.2"
+    "watchify": "~0.10.2",
+    "react-router": "^0.8.0"
+
   },
   "browserify": {
     "transform": [
@@ -61,7 +63,6 @@
     "gulp-notify": "^1.8.0",
     "gulp-plumber": "^0.6.6",
     "gulp-sass": "^1.0.0",
-    "gulp-shell": "^0.2.9",
-    "react-router": "^0.8.0"
+    "gulp-shell": "^0.2.9"
   }
 }
