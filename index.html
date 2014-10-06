@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>{{title}}</title>
     {% for file in css %}
-    <link rel="stylesheet" href="{{file}}" type="text/css">
+        <link rel="stylesheet" href="{{file}}" type="text/css">
     {% endfor %}
     <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,42 +28,29 @@
     </script>
 </head>
 <body>
-
-<body id="app">
-<div id="layout"></div>
-<div id="masthead" class="hidden-xs"></div>
-<div id="menu" class="header hidden-sm hidden-md hidden-lg"></div>
-<div class="container-fluid">
-    <div id="react-root"></div>
-    <div class="header hidden-xs">
-        <ul class="nav nav-pills pull-right">
-            <li class="active"><a href="/index.php#nosplash">home</a></li>
-            <li><a href="index.php?content=about#nosplash">about</a></li>
-            <li><a href="mailto:anders@robbestad.com">contact</a></li>
-        </ul>
-        <a href="/">
-
-            <h1 class="text-muted" id="content">{{ pagename|title }}</h1>
-        </a>
-    </div>
-
-    <div class="row">
-        <div class="col-md-3 col-sm-3 hidden-xs sidebar">
-        </div>
-        <div class="article col-sm-9 col-md-9 col-xs-12">
-            <div class="innerXsPadding">
-            </div>
-        </div>
-    </div>
-
-</div>
+<div id="Menu" class="header hidden-sm hidden-md hidden-lg"></div>
+<!--<div id="Routes"></div>-->
 
 
-<footer id="myfooter"></footer>
+<!--<div id="layout"></div>-->
+<!--<div id="masthead" class="hidden-xs"></div>-->
 
+<!--<div class="header hidden-xs">-->
+    <!--<ul class="nav nav-pills pull-right">-->
+        <!--<li class="active"><a href="/index.php#nosplash">home</a></li>-->
+        <!--<li><a href="index.php?content=about#nosplash">about</a></li>-->
+        <!--<li><a href="mailto:anders@robbestad.com">contact</a></li>-->
+    <!--</ul>-->
+    <!--<a href="/">-->
+
+        <!--<h1 class="text-muted">{{ pagename|title }}</h1>-->
+    <!--</a>-->
+<!--</div>-->
+<div id="App"></div>
+<footer id="Footer"></footer>
 
 {% for file in js %}
-<script async type="text/javascript" src="{{file}}"></script>
+    <script async type="text/javascript" src="{{file}}"></script>
 {% endfor %}
 
 </body>

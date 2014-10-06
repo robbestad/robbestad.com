@@ -9,9 +9,10 @@ var express = require('express'),
 var app = express();
     app.use(compress());   
 var css = ['node_modules/bootstrap/dist/css/bootstrap.css',
-           'css/main.css',
-           'common-assets/base.css'],
-    js = ['node_modules/jquery/dist/jquery.js','js/bundle.js'],
+           'css/main.css'],
+    js = ['node_modules/jquery/dist/jquery.js',
+//        'node_modules/react/dist/react.js',
+        'js/bundle.js'],
     title = 'Fifth Floor';
 
 if ('production' == app.get('env')) {
