@@ -3,11 +3,10 @@
 'use strict';
 
 var React = require('react'),
-    Menu  = require('menu.react'),
 
     Sidebar = React.createClass({
         propagateClick: function () {
-            this.props.onClick(this);
+//            this.props.onClick(this);
         },
 
         render: function() {

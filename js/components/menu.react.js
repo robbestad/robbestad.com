@@ -437,7 +437,6 @@ var Menu = React.createClass({
                 visible={sliderVisible} blogTitles={this.props.blogTitles} />
         </section>
         );
-
     }
 });
 module.exports = Menu;
