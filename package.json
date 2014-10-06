@@ -7,7 +7,7 @@
     "start": "NODE_ENV=development node index.js & gulp & watchify -o js/bundle.js -v -d .",
     "build": "NODE_ENV=production browserify . | node_modules/.bin/uglifyjs -cm > assets/bundle.min.js",
     "test": "jest",
-    "postinstall": "npm build"
+    "postinstall": "browserify . | node_modules/.bin/uglifyjs -cm > assets/bundle.min.js"
   },
   "author": "Sven Anders Robbestad",
   "license": "ISC",
