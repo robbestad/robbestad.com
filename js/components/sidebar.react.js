@@ -5,9 +5,6 @@
 var React = require('react'),
 
     Sidebar = React.createClass({
-        propagateClick: function () {
-//            this.props.onClick(this);
-        },
 
         render: function() {
             var style;
@@ -50,14 +47,11 @@ var React = require('react'),
                     width:0
                 }
             }
-//            var data = this.props.blogTitles.map(function(single){
-//                console.log(single.props.children);
-//            });
 
 
             return (
                 <div style={style} className="responsiveList sideBar">
-                    <ul  onClick={this.propagateClick} className="slider sliderItem" style={bg} dangerouslySetInnerHTML={{__html: this.props.blogTitles}} />
+                    <ul className="slider sliderItem" style={bg} dangerouslySetInnerHTML={{__html: this.props.blogTitles}} />
                 </div>
             )
         }

@@ -247,4 +247,11 @@ $(document).ready(function () {
             new hamburgerButton.HamburgerButton(ex, size, color);
         })(document.getElementById('hamburgerButton'), 34, '#000000');
     })();
+
+    $("#hamburgerButton").click(function(){ app.toggleSidebarVisibility(); });
+    $('body').on('click', 'a.menuitem', function() {
+        //app.toggleSidebarVisibility();
+        //        $( "#hamburgerButton" ).trigger( "click" );
+        $("#hamburger").trigger("click")
+    });
 });
