@@ -18,7 +18,7 @@ var css = ['node_modules/bootstrap/dist/css/bootstrap.css',
 
 if ('production' == app.get('env')) {
   css = ['assets/bundle.min.css'],
-  js = ['assets/bundle.min.js'];
+  js = ['assets/bundle.min.js','assets/app.min.js'];
 
 //  // Configure Stormpath.
 //  app.use(stormpath.init(app, {
