@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     changed = require('gulp-changed'),
     csso = require('gulp-csso'),
 //    less = require('gulp-less'),
-//    uglify = require('gulp-uglify'),
+    uglify = require('gulp-uglify'),
 //    browserify = require('browserify'),
     autoprefixer = require('gulp-autoprefixer'),
     imagemin = require('gulp-imagemin'),
@@ -52,6 +52,14 @@ var paths = {
     fonts: ['']
 };
 
+
+// js tasks
+
+gulp.task('jsbundle', function () {
+    return gulp.src('js/app-ready.js')
+        .pipe(concat('bundle.min.css'))
+        .pipe(gulp.dest('assets'));
+});
 
 // css tasks
 gulp.task('scss', function () {
