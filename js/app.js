@@ -15,6 +15,21 @@ var _blogData = {};
 var _changeListeners = [];
 var _initCalled = false;
 
+
+React.initializeTouchEvents(true);
+
+var SetIntervalMixin = {
+    componentWillMount: function() {
+        this.intervals = [];
+    },
+    setInterval: function() {
+        this.intervals.push(setInterval.apply(null, arguments));
+    },
+    componentWillUnmount: function() {
+        this.intervals.map(clearInterval);
+    }
+};
+
 var BlogStore = {
 
     init: function () {
@@ -77,6 +92,180 @@ var BlogStore = {
 
 };
 
+
+var Menu = React.createClass({
+    mixins: [SetIntervalMixin ],
+    getInitialState: function() {
+        this.addResizeAttach();
+
+        return {
+            overflow:true,
+            isActive: false,
+            scrollPosition:{
+                0:0,1:0
+            },
+            width: document.body.clientWidth,
+            height: window.innerHeight,
+        };
+    },
+    componentWillMount: function () {
+    },
+    componentDidMount: function() {
+        this.setInterval(this.tick, 150);
+        window.menu = this;
+    },
+    componentWillUnmount: function () {
+    },
+    tick: function() {
+        var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+        var menuTop = document.getElementById("menu").style.position;
+        if(undefined !== this.state.scrollPosition){
+
+            this.replaceState({
+                blogLinks:BlogStore.getItems(),
+                loading:this.state.loading,
+                scrollTop: scrollTop,
+                menuTop:menuTop,
+                width: window.innerWidth,
+                scrollPosition:{
+                    0:this.state.scrollPosition[0],
+                    1:this.state.scrollPosition[1]
+                },
+                height: window.innerHeight, overflow:this.state.overflow});
+        }
+    },
+    onResize: function(){
+        this.replaceState({
+            blogLinks:BlogStore.getItems(),
+            loading:this.state.loading,
+            width: window.innerWidth,
+            height:document.body.clientHeight,searchVisible:this.state.searchVisible,
+            sliderVisible:this.state.sliderVisible});
+        $("#disqus_thread").css("width",window.innerWidth+"px")
+        if(window.innerWidth>=768){
+            if(this.state.searchVisible){
+                this.toggleSearchClick();
+            }
+            if(this.state.sliderVisible){
+                this.toggleNavClick();
+            }
+            if(this.state.sliderVisible || this.state.sliderVisible){
+                var state=this.state;
+                state.searchVisible=false;
+                state.sliderVisible=false;
+
+                this.setState(state);
+            }
+        }
+    },
+    addResizeAttach: function() {
+        if(window.attachEvent) {
+            window.attachEvent('onresize', this.onResize);
+        }
+        else if(window.addEventListener) {
+            window.addEventListener('resize', this.onResize, true);
+        }
+        else {
+            //The browser does not support Javascript event binding
+        }
+    },
+    removeAttachmentResize: function() {
+        if(window.detachEvent) {
+            window.detachEvent('onresize', this.onResize);
+        }
+        else if(window.removeEventListener) {
+            window.removeEventListener('resize', this.onResize);
+        }
+        else {
+            //The browser does not support Javascript event binding
+        }
+    },
+    render: function () {
+
+        var width = ((document.getElementById("App").clientWidth) / 3) - 2;
+        var reduceFactor=200;
+        var padding=31;
+        var opacity = this.state.scrollTop/reduceFactor <= 1.0 ? this.state.scrollTop/reduceFactor > 0.0 ? this.state.scrollTop/reduceFactor : 0.0 : 1.0;
+
+        var liStyle = {
+            float: 'left',
+            width: width+"px",
+            padding: '15px 5px',
+            borderTop: '0',
+            height:'40px',
+            zIndex: 999
+        };
+
+        var ulStyle = {
+            display: 'block',
+            height: '30px',
+            marginBottom: '10px',
+            listStyle: 'none outside none',
+            margin: '0px',
+            padding: '0px',
+            textAlign: 'center',
+            zIndex:'99999'
+        };
+
+        var liFontStyle = {
+            fontFamily: 'Lobster, Open Sans',
+            fontSize:'2rem',
+            float: 'left',
+            width: width+"px",
+            padding: '5px 5px',
+            borderTop: '0',
+            zIndex: 999,
+            height:'40px'
+        };
+
+        var aFontStyleMini = {
+            fontFamily: 'Lobster, Open Sans',
+            fontSize:'1.3rem'
+
+        };
+
+
+        var width=this.state.width;
+        var height=this.state.height;
+        var divStyle= {
+            display: 'block',
+            position: 'fixed',
+            top: '0px',
+            width: document.getElementById("App").clientWidth+"px",
+            backgroundColor: '#f1f1f1',
+            zIndex:'9999999',
+            borderRadius: '5px',
+            borderBottom: '1px solid #a5a5a5',
+            boxShadow:'3px 0px 3px 1px #cccccc'
+
+        };
+        var inFront={
+            zIndex:99999999
+        };
+
+        var top=0;
+
+        return (<div>
+            <div style={divStyle} id="menu" className="hidden-md hidden-lg hidden-sm visible-xs">
+                <ul style={ulStyle}>
+                    <li  style={liStyle} className="hidden-lg">
+                        <div onClick={this.toggleNavClick} style={inFront}
+                            className="hidden-md hidden-lg hidden-sm visible-xs" id="hamburgerButton"  />
+                    </li>
+                    <li  style={liFontStyle}>
+                        <div  onClick={this.toggleNavClick} style={inFront}>Robbestad.com</div>
+                    </li>
+                    <li style={liFontStyle}>
+                        <div onClick={this.toggleSearchClick} className="Layout-search fa fa-search" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+            );
+
+    }
+});
+
 var App = React.createClass({
     getInitialState: function() {
         return {
@@ -123,6 +312,7 @@ var App = React.createClass({
         var sidebarWidth = document.body.clientWidth;
         return (
             <div>
+                <Menu />
                 <Sidebar sidebarVisible={sidebarVisible} width={sidebarWidth} />
                 <section className="container-fluid">
 
