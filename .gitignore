@@ -1,3 +1,4 @@
+*.log
 assets/bundle.min.js
 node_modules
 .idea

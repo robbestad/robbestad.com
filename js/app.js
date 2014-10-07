@@ -185,7 +185,7 @@ var Menu = React.createClass({
         };
 
         var liFontStyle = {
-            fontFamily: 'Lobster, Open Sans',
+            fontFamily: 'Raleway, freight-text-pro',
             fontSize:'2rem',
             float: 'left',
             width: width+"px",
@@ -196,7 +196,7 @@ var Menu = React.createClass({
         };
 
         var aFontStyleMini = {
-            fontFamily: 'Lobster, Open Sans',
+            fontFamily: 'freight-text-pro, tk-freight-text-pro, Lobster, Open Sans',
             fontSize:'1.3rem'
 
         };
@@ -207,11 +207,10 @@ var Menu = React.createClass({
             position: 'fixed',
             top: '0px',
             width: document.body.clientWidth+"px",
-            backgroundColor: '#f1f1f1',
             zIndex:'9999999',
             borderRadius: '5px',
             borderBottom: '1px solid #a5a5a5',
-            boxShadow:'3px 0px 3px 1px #cccccc'
+            boxShadow:'3px 0px 3px 1px #FFFFFF'
 
         };
         var inFront={
@@ -379,11 +378,12 @@ var Contact = React.createClass({
             <div className="innerXsPadding">
                 <h3>{name}</h3>
                 <section dangerouslySetInnerHTML={{__html: content}} />
-                <button onClick={this.destroy}>Delete</button>
+
             </div>
             );
     }
 });
+// <button onClick={this.destroy}>Delete</button>
 
 var Sidebar = React.createClass({
     getInitialState: function() {
@@ -442,16 +442,14 @@ var Sidebar = React.createClass({
                 width:this.props.width <= 768 ? this.props.width-3 : (this.props.width-3)/2+"px",
                 height:'100%',
                 zIndex:'998',
-                backgroundColor: '#400',
                 overflowScroll:'touch'
             }
         }
 
         var bg={
-            backgroundColor:'#e0e0e0',
             borderRight:'1px solid #aaaaaa',
             borderLeft:'1px solid #aaaaaa',
-            boxShadow:'3px 0px 0px 0px #cccccc'
+            boxShadow:'3px 0px 0px 0px #FFFFFF'
         };
         if(window.innerWidth>=768){
             style={
