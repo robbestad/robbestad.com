@@ -2,7 +2,8 @@
     'use strict';
 })();
 
-//var rebound = require("rebound");
+var rebound = require("rebound");
+var $ = require("jquery");
 
 //UTILS
 (function() {
@@ -215,11 +216,13 @@
         }
     });
 // Export the control.
-    if (typeof exports != 'undefined') {
-        extend(exports, hb);
-    } else if (typeof window != 'undefined') {
-        window.hamburgerButton = hb;
-    }
+    window.hamburgerButton = hb;
+//    if (typeof exports != 'undefined') {
+//        extend(exports, hb);
+//    } else if (typeof window != 'undefined') {
+//        window.hamburgerButton = hb;
+//    }
+
 })();
 
 function once (fn) {

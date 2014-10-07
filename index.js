@@ -11,14 +11,14 @@ var app = express();
 var css = ['node_modules/bootstrap/dist/css/bootstrap.css',
            'css/main.css'],
     js = ['node_modules/jquery/dist/jquery.js',
-        'js/bundle.js',
-        'bower_components/rebound-js/rebound.js',
-        'js/app-ready.js'],
-    title = 'Fifth Floor';
-
+        'js/bundle.js'];
+    title = 'Blog';
+//
+//'bower_components/rebound-js/rebound.js',
+//    'js/app-ready.js']
 if ('production' == app.get('env')) {
   css = ['assets/bundle.min.css'],
-  js = ['assets/bundle.min.js','assets/app.min.js'];
+  js = ['assets/bundle.min.js'];
 
 //  // Configure Stormpath.
 //  app.use(stormpath.init(app, {

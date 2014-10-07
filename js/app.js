@@ -7,7 +7,7 @@ var Routes = Router.Routes;
 var Link = Router.Link;
 var NotFoundRoute = Router.NotFoundRoute;
 var $ = require('jquery')(window);
-//var appReady = require('./app-ready');
+var appr = require('./app-ready');
 
 
 
