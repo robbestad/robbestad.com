@@ -25,7 +25,7 @@ var gulp = require('gulp'),
     nodemon = require('gulp-nodemon');
 
 // tasks
-gulp.task('default', ['cssbundle', 'lint', 'watch'], function () {
+gulp.task('default', ['jsbundle','cssbundle', 'lint', 'watch'], function () {
     gulp.watch('js/**/*', ['lint', reload]);
 });
 
@@ -56,8 +56,9 @@ var paths = {
 // js tasks
 
 gulp.task('jsbundle', function () {
-    return gulp.src('js/app-ready.js')
-        .pipe(concat('bundle.min.css'))
+    return gulp.src(['bower_components/rebound-js/rebound.js',
+        'js/app-ready.js'])
+        .pipe(concat('app.min.js'))
         .pipe(gulp.dest('assets'));
 });
 
