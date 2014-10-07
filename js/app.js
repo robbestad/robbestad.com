@@ -122,7 +122,6 @@ var Menu = React.createClass({
         if(undefined !== this.state.scrollPosition){
 
             this.replaceState({
-                blogLinks:BlogStore.getItems(),
                 loading:this.state.loading,
                 scrollTop: scrollTop,
                 menuTop:menuTop,
@@ -136,12 +135,11 @@ var Menu = React.createClass({
     },
     onResize: function(){
         this.replaceState({
-            blogLinks:BlogStore.getItems(),
             loading:this.state.loading,
             width: window.innerWidth,
             height:document.body.clientHeight,searchVisible:this.state.searchVisible,
             sliderVisible:this.state.sliderVisible});
-        $("#disqus_thread").css("width",window.innerWidth+"px")
+        $("#disqus_thread").css("width",window.innerWidth+"px");
         if(window.innerWidth>=768){
             if(this.state.searchVisible){
                 this.toggleSearchClick();
