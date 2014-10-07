@@ -113,8 +113,11 @@ var Menu = React.createClass({
     componentWillUnmount: function () {
     },
     tick: function() {
-        var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-        var menuTop = document.getElementById("menu").style.position;
+        var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset :
+            (document.documentElement || document.body.parentNode || document.body).scrollTop;
+        var menuTop=0;
+        if(undefined !== document.getElementById("Menu"))
+            menuTop = document.getElementById("Menu").style.position;
         if(undefined !== this.state.scrollPosition) {
             var state = this.state;
             state.scrollTop = scrollTop;
