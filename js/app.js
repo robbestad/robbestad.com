@@ -139,7 +139,7 @@ var Menu = React.createClass({
             width: window.innerWidth,
             height:document.body.clientHeight,searchVisible:this.state.searchVisible,
             sliderVisible:this.state.sliderVisible});
-        $("#disqus_thread").css("width",window.innerWidth+"px");
+        //$("#disqus_thread").css("width",window.innerWidth+"px");
         if(window.innerWidth>=768){
             if(this.state.searchVisible){
                 this.toggleSearchClick();
