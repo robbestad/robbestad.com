@@ -420,11 +420,15 @@ var Menu = React.createClass({
         return (<section>
             <div style={divStyle} id="menu">
                 <ul style={ulStyle}>
-
+                    <li  style={liStyle} className="hidden-lg"  >
+                        <div onClick={this.toggleNavClick} style={inFront} id="hamburgerButton"  />
+                    </li>
                     <li  style={liFontStyle}>
                         <div  onClick={this.toggleNavClick} style={inFront}    >Robbestad.com</div>
                     </li>
-                     
+                    <li style={liFontStyle}>
+                        <div onClick={this.toggleSearchClick} className="Layout-search fa fa-search" />
+                    </li>
                 </ul>
             </div>
             <Search height={height} width={width}
