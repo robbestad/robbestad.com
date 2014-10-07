@@ -5,7 +5,7 @@
   "main": "js/app.js",
   "scripts": {
     "start": "NODE_ENV=development node index.js & gulp & watchify -o js/bundle.js -v -d .",
-    "build": "NODE_ENV=production browserify . | node_modules/.bin/uglifyjs -cm > assets/bundle.min.js",
+    "build": "NODE_ENV=production browserify . | node_modules/.bin/uglifyjs -cm   > assets/bundle.min.js",
     "test": "jest",
     "postinstall": "browserify . | node_modules/.bin/uglifyjs -cm > assets/bundle.min.js"
   },
@@ -27,17 +27,22 @@
     "mailgun": "^0.5.0",
     "piler": "^0.5.1",
     "react": "~0.11.2",
+    "react-router": "^0.8.0",
     "reactify": "~0.14.0",
-    "swig": "^1.4.2",
+    "rebound": "0.0.10",
     "resolve": "~0.6.1",
+    "swig": "^1.4.2",
     "uglify-js": "~2.4.15",
-    "watchify": "~0.10.2",
-    "react-router": "^0.8.0"
-
+    "watchify": "~0.10.2"
   },
   "browserify": {
     "transform": [
-        ["reactify", {"es6": true}],
+      [
+        "reactify",
+        {
+          "es6": true
+        }
+      ],
       "envify"
     ],
     "bootstrap": {
