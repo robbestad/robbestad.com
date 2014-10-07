@@ -116,8 +116,8 @@ var Menu = React.createClass({
         var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset :
             (document.documentElement || document.body.parentNode || document.body).scrollTop;
         var menuTop=0;
-        if(undefined !== document.getElementById("Menu"))
-            menuTop = document.getElementById("Menu").style.position;
+//        if(undefined !== document.getElementById("Menu"))
+//            menuTop = document.getElementById("Menu").style.position;
         if(undefined !== this.state.scrollPosition) {
             var state = this.state;
             state.scrollTop = scrollTop;
@@ -222,9 +222,9 @@ var Menu = React.createClass({
         return (
             <div style={divStyle} id="menu" className="hidden-md hidden-lg visible-sm visible-xs">
                 <ul style={ulStyle}>
-                    <li  style={liStyle} className="hidden-lg">
+                    <li style={liStyle} className="hidden-lg">
                         <div style={inFront}
-                            className="hidden-md hidden-lg visible-sm visible-xs" id="hamburgerButton"  />
+                            className="" id="hamburgerButton"  />
                     </li>
                     <li  style={liFontStyle}>
                         <div style={inFront}>Robbestad.com</div>
