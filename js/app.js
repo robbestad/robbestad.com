@@ -179,11 +179,9 @@ var Menu = React.createClass({
         }
     },
     render: function () {
-
-        var width = ((document.getElementById("App").clientWidth) / 3) - 2;
+        var width = ((document.body.clientWidth) / 3) - 2;
         var reduceFactor=200;
         var padding=31;
-        var opacity = this.state.scrollTop/reduceFactor <= 1.0 ? this.state.scrollTop/reduceFactor > 0.0 ? this.state.scrollTop/reduceFactor : 0.0 : 1.0;
 
         var liStyle = {
             float: 'left',
@@ -223,13 +221,11 @@ var Menu = React.createClass({
         };
 
 
-        var width=this.state.width;
-        var height=this.state.height;
         var divStyle= {
             display: 'block',
             position: 'fixed',
             top: '0px',
-            width: document.getElementById("App").clientWidth+"px",
+            width: document.body.clientWidth+"px",
             backgroundColor: '#f1f1f1',
             zIndex:'9999999',
             borderRadius: '5px',
@@ -244,17 +240,17 @@ var Menu = React.createClass({
         var top=0;
 
         return (<div>
-            <div style={divStyle} id="menu" className="hidden-md hidden-lg hidden-sm visible-xs">
+            <div style={divStyle} id="menu" className="hidden-md hidden-lg visible-sm visible-xs">
                 <ul style={ulStyle}>
                     <li  style={liStyle} className="hidden-lg">
-                        <div onClick={this.toggleNavClick} style={inFront}
-                            className="hidden-md hidden-lg hidden-sm visible-xs" id="hamburgerButton"  />
+                        <div  style={inFront}
+                            className="hidden-md hidden-lg visible-sm visible-xs" id="hamburgerButton"  />
                     </li>
                     <li  style={liFontStyle}>
-                        <div  onClick={this.toggleNavClick} style={inFront}>Robbestad.com</div>
+                        <div   style={inFront}>Robbestad.com</div>
                     </li>
                     <li style={liFontStyle}>
-                        <div onClick={this.toggleSearchClick} className="Layout-search fa fa-search" />
+                        <div   className="Layout-search fa fa-search" />
                     </li>
                 </ul>
             </div>
