@@ -220,7 +220,7 @@ var Menu = React.createClass({
         var top=0;
 
         return (
-            <div style={divStyle} id="menu" className="hidden-md hidden-lg visible-sm visible-xs">
+            <div style={divStyle} id="menu" >
                 <ul style={ulStyle}>
                     <li style={liStyle} className="hidden-lg">
                         <div style={inFront}
@@ -288,41 +288,22 @@ var App = React.createClass({
                 <Menu />
                 <Sidebar sidebarVisible={sidebarVisible} width={sidebarWidth} />
                 <section className="container-fluid">
-
-                <div className="header hidden-xs">
-                    <ul className="nav nav-pills pull-right">
-                        <li className="active"><a href="/index.php#nosplash">home</a></li>
-                        <li><a href="index.php?content=about#nosplash">about</a></li>
-                        <li><a href="mailto:anders@robbestad.com">contact</a></li>
-                    </ul>
-                    <a href="/">
-
-                        <h1 className="text-muted">title</h1>
-                    </a>
-                </div>
-
-                <div className="row-fluid">
-                <div className="sidebar col-sm-4 col-md-3 col-lg-3 hidden-xs">
-                    <div id="content">
-                        <Link to="new">New Contact</Link>
-                        <ul>
-                {blogitems}
-                        </ul>
-                        <Link to="/nothing-here">Invalid Link (not found)</Link>
+                  <div className="row-fluid">
+                    <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
+                        left
+                    </div>
+                    <div className="article col-sm-12 col-xs-12 col-md-10 col-lg-10">
+                        {this.props.activeRouteHandler()}
+                    </div>
+                    <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
+                        right
                     </div>
                 </div>
-                <div className="article col-sm-8 col-md-9 col-lg-9 col-xs-12">
-                {this.props.activeRouteHandler()}
-                </div>
-            </div>
             </section>
             </div>
             );
     }
 });
-
-
-
 
 var Index = React.createClass({
     render: function() {
@@ -375,11 +356,13 @@ var Contact = React.createClass({
         var content = contact.content;
 
         return (
-            <div className="innerXsPadding">
-                <h3>{name}</h3>
+                <section className="innerXsPadding">
+                    <div className="date-title">August 31, 2014</div>
+                    <h2 className="entry-title">{name}</h2>
+
                 <section dangerouslySetInnerHTML={{__html: content}} />
 
-            </div>
+                </section>
             );
     }
 });

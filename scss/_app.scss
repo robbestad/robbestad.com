@@ -17,32 +17,40 @@
   /* The html and body elements cannot have any padding or margin. */
 
 }
-pre{
-  border:0;
-  padding:0;
-  background-color: transparent;
-
-}
 
 html, body {
 //  height: 100%!important;
   /* The html and body elements cannot have any padding or margin. */
   background-color: $white;
-  font-family: freight-text-pro,'Open Sans',sans-serif;
+  font-family: 'freight-text-pro', Georgia, serif;
+  line-height: 22px;
+  &::selection{
+    background: #DD574C;
+    color: #fff;
+  }
 }
 
 h2{
-  font-size:1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 52px;
+  line-height: 62px;
+  text-align: center;
+  margin: 0;
+  font-family: 'Raleway','freight-text-pro', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 h1{
   font-size: 4rem;
-  font-family: 'Raleway',freight-text-pro,'Lobster',sans-serif;
+  font-weight: 800;
+  font-family: 'Raleway','freight-text-pro', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 .sidebar{
 //  background-color: #e0e0e0;
   z-index: 1;
+  background-color: $white;
+   padding: 10% 1% 0 1%;
   transition: visibility 0s 2s, opacity 2s linear;
 }
 .responsiveList{
@@ -58,7 +66,7 @@ a{
 
 .article{
   transition: visibility 0s 2s, opacity 2s linear;
-  padding: 10px 10px 40px 20px;
+//  padding: 10px 10px 40px 20px;
   border-radius: 5px 0 0 0;
   a {
     font-weight: bold;
@@ -66,16 +74,30 @@ a{
     &:hover { text-decoration: underline; }
     body.firefox & { font-weight: normal; }
   }
-  //background-color: transparentize(#F5DEB3,.5);
-
-}
-
-
-@media only screen and (min-width: 1140px) {
-  .article{
-    border-radius: 5px 5px 0 0;
+  font-family: 'freight-text-pro', Georgia, serif;
+  font-size: 22px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 33px;
+  &::selection{
+    background: #DD574C;
+    color: #fff;
   }
 }
+
+.date-title{
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  color: #d2d2d2;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 3%;
+  width: 100%;
+  display: inline-block;
+}
+
 
 #hamburgerButton{
   z-index:9999;
@@ -85,55 +107,50 @@ a{
   margin-top:25px;
 }
 .innerXsPadding{
-  padding: 0 2px 0 20px ;
+  padding: 50px 15% 0 15%;
+}
+.img-responsive.img-center {
+  margin: 0 auto;
 }
 
-@media only screen and (max-width : 768px) {
+.excerpt{
+  font-size: 1.25em;
+  text-align: center;
+  em{
+    font-smoothing: antialiased;
+    font: 22px/1.5 'freight-text-pro', Georgia, serif;
+    font-style: italic;
+  }
+  padding: 25px 0 25px 0;
+}
+
+@media only screen and (max-width : 767px){
   .article{
-    padding: 50px 0 0 0;
     border-radius: 0 0 0 0;
-    margin-bottom: 48px;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .innerXsPadding{
-    padding: 0 10% 0 10%;
+    padding: 50px 10% 0 10%;
   }
-  body{
-    font-family: freight-text-pro, tk-freight-text-pro, sans-serif;
-    font-size: 22px;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: normal;
-    height: 99px;
-    line-height: 33px;
-  }
+
+
   .container-fluid{
     padding:0;
   }
 }
 
-@media only screen and (max-width : 320px) {
-  .article{
-    padding: 50px 0 0 0;
-    border-radius: 0 0 0 0;
-    margin-bottom: 48px;
-    overflow: hidden;
-    max-width: 318px;
-    width: 318px;
-  }
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
   .innerXsPadding{
-    padding: 0 15px 0 15px ;
+    padding: 50px 10% 0 10%;
   }
 
-  body{
-    font-family: freight-text-pro, tk-freight-text-pro, sans-serif;
-    font-size: 22px;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: normal;
-    height: 99px;
-    line-height: 33px;
+  .article{
+    border-radius: 0 0 0 0;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
+
   .container-fluid{
     padding:0;
   }
