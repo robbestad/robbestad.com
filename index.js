@@ -40,8 +40,8 @@ app.get('/', function(req, res) {
 
 app.get(/^(.+)$/, function(req, res) { 
   if ('production' == app.get('env')) {
-    res.setHeader("Cache-Control", "public, max-age=2419200"); // 16 days
-    res.setHeader("Expires", new Date(Date.now() + 1).toUTCString());
+    res.setHeader("Cache-Control", "public, max-age=2419200"); // 14 days
+    res.setHeader("Expires", new Date(Date.now() + 345600000).toUTCString());
   }
   res.sendFile(__dirname +'/' + req.params[0]); 
 });
