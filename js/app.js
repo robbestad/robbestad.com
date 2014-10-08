@@ -289,7 +289,7 @@ var App = React.createClass({
                     <div id="footer-inside" className="innerXsPadding">
                         <div id="text-2" className="widget widget_text">
                             <div className="textwidget">
-                                <Link to="/">Return Home</Link>
+                                <Link to="/">Home</Link>
                             </div>
                         </div>
                         <div id="text-4" className="widget widget_text">
