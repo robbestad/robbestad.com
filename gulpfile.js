@@ -42,13 +42,10 @@ gulp.task('watch', function () {
 var paths = {
     scripts: [
         'node_modules/jquery/dist/jquery.js',
-        'js/bundle.js',
-        'bower_components/rebound-js/rebound.js',
-        'js/app-ready.js'],
+        'js/bundle.js'],
     scss: ['./scss/main.scss'],
     css: ['node_modules/bootstrap/dist/css/bootstrap.css',
-        'css/**/*',
-        'common-assets/base.css'],
+        'css/**/*'],
     fonts: ['']
 };
 
