@@ -1,4 +1,5 @@
 *.log
+assets/app.min.js
 assets/bundle.min.js
 node_modules
 .idea
