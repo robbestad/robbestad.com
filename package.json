@@ -1,7 +1,7 @@
 {
   "name": "robbestad",
-  "version": "0.1.0",
-  "description": "My node blog",
+  "version": "1.1.0",
+  "description": "Robbestad.com, built with react on top of node express",
   "main": "js/app.js",
   "scripts": {
     "start": "NODE_ENV=development node index.js & gulp & watchify -o js/bundle.js -v -d .",
@@ -26,7 +26,6 @@
     "jquery-browserify": "^1.8.1",
     "mailgun": "^0.5.0",
     "moment": "^2.8.3",
-    "piler": "^0.5.1",
     "react": "~0.11.2",
     "react-router": "^0.8.0",
     "reactify": "~0.14.0",
