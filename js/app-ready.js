@@ -245,6 +245,7 @@ $(document).ready(function () {
     })();
     $("#hamburger").click(function(){
         app.toggleSidebarVisibility();
+
     });
 //    $("#hamburgerButton").click(function(){
 //        app.toggleSidebarVisibility();

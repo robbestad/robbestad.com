@@ -226,12 +226,54 @@ var App = React.createClass({
     },
 
     toggleSidebarVisibility:function() {
-        var state=this.state;
+        var state=this.state,
+            b=jQuery("body"),
+            cf=jQuery(".container-fluid"),
+            sb=jQuery(".sideBar");
+
+        if(state.sidebarVisible){
+            sb.css("overflowY", "auto");
+            cf.css("position", "relative");
+            sb.css("height", "0px");
+            jQuery("body").css("overflow","visible");
+
+        } else if(b.width()<768){
+            var scrollPosition = [
+                    self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
+                    self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
+            ];
+            var width = this.state.width < 768 ? this.state.width : this.state.width/2;
+
+            sb.css("overflowY", "auto");
+            cf.css("position", "fixed");
+            sb.css("height", "100%");
+            window.scrollTo(0, 0);
+            sb.animate({
+                width: width + "px"
+            }, 0, function () {
+                // success
+                window.scrollTo(0, 0);
+                jQuery(".sliderItem").animate({
+                    opacity: 1,
+                    backgroundColor: "#e0e0e0"
+                }, 100, function () {
+                    // success
+                });
+            });
+
+            state.scrollPosition = {
+                0: scrollPosition[1],
+                1: scrollPosition[0]
+            };
+        } else {
+            // desktop
+            jQuery(".sideBar").css("position","absolute");
+            jQuery(".sideBar").css("height",document.body.clientHeight+"px");
+            jQuery("body").css("overflow","hidden");
+        }
         state.sidebarVisible=!state.sidebarVisible;
         this.setState(state);
     },
-
-    
 
     componentWillMount: function () {
         BlogStore.init();
@@ -444,7 +486,6 @@ var Sidebar = React.createClass({
 
     componentDidMount: function() {
         BlogStore.addChangeListener(this.updateContacts);
-
     },
 
     componentWillUnmount: function () {
@@ -457,11 +498,12 @@ var Sidebar = React.createClass({
 
         this.setState({
             blogitems: BlogStore.getItems(),
-            loading: false
+            loading: false,
+            sidebarVisible: false
         });
     },
     render: function() {
-        var blogitems = this.state.blogitems.slice(0,10).map(function(article) {
+        var blogitems = this.state.blogitems.slice(0,20).map(function(article) {
             var url = article.url.split("/");
 
             var urlParams={
@@ -473,46 +515,52 @@ var Sidebar = React.createClass({
             return <li key={article.id}><Link to="blog" className="menuitem"
                 params={urlParams}>{article.title}</Link></li>
         });
-        var style;
-        if(!this.props.sidebarVisible){
-            style={
-                display:'none',
-                visibility:'hidden',
-                height:"100%",
-                width:"0px",
-                marginTop:'40px',
-                zIndex:0,
-                position:'absolute',
-                left:0
-            }
-        } else {
+
+        var style={
+            display:'block',
+            visibility:'visible',
+            marginTop:'40px',
+//            position:'fixed',
+            position:'absolute',
+            left:0,
+            top:document.body.scrollTop+"px",
+            width:this.props.width <= 768 ? this.props.width-3 : (this.props.width-3)/2+"px",
+            backgroundColor: '#fff',
+            zIndex:2,
+//            height:'100%',
+            overflowScroll:'touch'
+        };
+
+        if(this.props.width <= 768 && this.props.sidebarVisible){
             style={
                 display:'block',
                 visibility:'visible',
                 marginTop:'40px',
-                position:'fixed',
+                position:'relative',
                 left:0,
-                width:this.props.width <= 768 ? this.props.width-3 : (this.props.width-3)/2+"px",
-//                height:'100%',
+                height:'100%',
                 backgroundColor: '#fff',
                 zIndex:2,
                 overflowScroll:'touch'
             }
         }
-
+        if(!this.props.sidebarVisible) {
+            style = {
+                display: 'none',
+                visibility: 'hidden',
+                height: "100%",
+                width: "0px",
+                marginTop: '40px',
+                zIndex: 0,
+                position: 'absolute',
+                left: 0
+            };
+        }
         var bg={
             borderRight:'1px solid #aaaaaa',
             borderLeft:'1px solid #aaaaaa',
             boxShadow:'3px 0px 0px 0px #FFFFFF'
         };
-//        if(window.innerWidth>=768){
-//            style={
-//                display:'none',
-//                visibility:'hidden',
-//                height:0,
-//                width:0
-//            }
-//        }
 
         return (
             <div style={style} className="responsiveList sideBar">
