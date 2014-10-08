@@ -199,6 +199,15 @@ h2{
   text-align: center;
 }
 
+@media only screen and (max-width : 320px){
+
+  h2{
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
+
 @media only screen and (max-width : 767px){
 
   h2{

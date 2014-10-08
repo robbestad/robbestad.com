@@ -180,18 +180,11 @@ var Menu = React.createClass({
             fontSize:'2rem',
             float: 'left',
             width: width+"px",
-            padding: '5px 5px',
+            padding: '10px 5px',
             borderTop: '0',
             zIndex: 2,
             height:'40px'
         };
-
-        var aFontStyleMini = {
-            fontFamily: 'freight-text-pro, tk-freight-text-pro, Lobster, Open Sans',
-            fontSize:'1.3rem'
-
-        };
-
 
         var divStyle= {
             display: 'block',
