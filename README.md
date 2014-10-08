@@ -8,7 +8,7 @@
 
 > All data are pulled from an API and stored in a single store on load
 
-Available for testing on [heroku](http://robbestad-blog.herokuapp.com/)
+Check out [the site](http://www.robbestad.com/)
 
 ## Workflow
 

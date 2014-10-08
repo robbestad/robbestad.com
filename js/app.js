@@ -176,14 +176,7 @@ var Menu = React.createClass({
         };
 
         var liFontStyle = {
-            fontFamily: 'Raleway, freight-text-pro',
-            fontSize:'2rem',
-            float: 'left',
-            width: width+"px",
-            padding: '10px 5px',
-            borderTop: '0',
-            zIndex: 2,
-            height:'40px'
+            width: width+"px"
         };
 
         var divStyle= {
@@ -210,7 +203,7 @@ var Menu = React.createClass({
                         <div style={inFront}
                             className="" id="hamburgerButton"  />
                     </li>
-                    <li  style={liFontStyle}>
+                    <li  style={liFontStyle} className="menuHeader">
                         <div style={inFront}>Robbestad.com</div>
                     </li>
                     <li style={liFontStyle}>
@@ -237,6 +230,8 @@ var App = React.createClass({
         state.sidebarVisible=!state.sidebarVisible;
         this.setState(state);
     },
+
+    
 
     componentWillMount: function () {
         BlogStore.init();
