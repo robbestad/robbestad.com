@@ -7,15 +7,14 @@ var Routes = Router.Routes;
 var Link = Router.Link;
 var NotFoundRoute = Router.NotFoundRoute;
 var $ = require('jquery')(window);
+var jQuery = require('jquery');
 var appr = require('./app-ready');
-
-
+var moment = require ('moment');
 
 var api = 'http://api.robbestad.com/robbestad';
 var _blogData = {};
 var _changeListeners = [];
 var _initCalled = false;
-
 
 React.initializeTouchEvents(true);
 
@@ -41,7 +40,8 @@ var BlogStore = {
 
         getJSON(api, function (err, res) {
             res._embedded.robbestad.forEach(function (item) {
-                _blogData[item.id] = item;
+//                _blogData[item.id] = item;
+                _blogData[item.url] = item;
             });
 
             BlogStore.notifyChange();
@@ -62,7 +62,7 @@ var BlogStore = {
         BlogStore.notifyChange();
     },
 
-    getContacts: function () {
+    getItems: function () {
         var array = [];
 
         for (var id in _blogData)
@@ -71,9 +71,15 @@ var BlogStore = {
         return array;
     },
 
-    getContact: function (id) {
+    getItem: function (id) {
+        console.table(id);
         return _blogData[id];
     },
+
+    getItemByUrl: function (url) {
+        return _blogData[url];
+    },
+
 
     notifyChange: function () {
         _changeListeners.forEach(function (listener) {
@@ -117,8 +123,6 @@ var Menu = React.createClass({
         var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset :
             (document.documentElement || document.body.parentNode || document.body).scrollTop;
         var menuTop=0;
-//        if(undefined !== document.getElementById("Menu"))
-//            menuTop = document.getElementById("Menu").style.position;
         if(undefined !== this.state.scrollPosition) {
             var state = this.state;
             state.scrollTop = scrollTop;
@@ -170,7 +174,7 @@ var Menu = React.createClass({
             padding: '15px 5px',
             borderTop: '0',
             height:'40px',
-            zIndex: 999
+            zIndex: 2
         };
 
         var ulStyle = {
@@ -181,7 +185,7 @@ var Menu = React.createClass({
             margin: '0px',
             padding: '0px',
             textAlign: 'center',
-            zIndex:'99999'
+            zIndex:2
         };
 
         var liFontStyle = {
@@ -191,7 +195,7 @@ var Menu = React.createClass({
             width: width+"px",
             padding: '5px 5px',
             borderTop: '0',
-            zIndex: 999,
+            zIndex: 2,
             height:'40px'
         };
 
@@ -207,14 +211,14 @@ var Menu = React.createClass({
             position: 'fixed',
             top: '0px',
             width: document.body.clientWidth+"px",
-            zIndex:'9999999',
+            zIndex:5,
             borderRadius: '5px',
             borderBottom: '1px solid #a5a5a5',
             boxShadow:'3px 0px 3px 1px #FFFFFF'
 
         };
         var inFront={
-            zIndex:99999999
+            zIndex:3
         };
 
         var top=0;
@@ -222,7 +226,7 @@ var Menu = React.createClass({
         return (
             <div style={divStyle} id="menu" >
                 <ul style={ulStyle}>
-                    <li style={liStyle} className="hidden-lg">
+                    <li style={liStyle}>
                         <div style={inFront}
                             className="" id="hamburgerButton"  />
                     </li>
@@ -242,7 +246,7 @@ var Menu = React.createClass({
 var App = React.createClass({
     getInitialState: function() {
         return {
-            blogitems: BlogStore.getContacts(),
+            blogitems: BlogStore.getItems(),
             loading: true,
             sidebarVisible: false
         };
@@ -272,7 +276,7 @@ var App = React.createClass({
             return;
 
         this.setState({
-            blogitems: BlogStore.getContacts(),
+            blogitems: BlogStore.getItems(),
             loading: false
         });
     },
@@ -290,24 +294,111 @@ var App = React.createClass({
                 <section className="container-fluid">
                   <div className="row-fluid">
                     <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
-                        left
+
                     </div>
                     <div className="article col-sm-12 col-xs-12 col-md-10 col-lg-10">
                         {this.props.activeRouteHandler()}
                     </div>
                     <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
-                        right
+
                     </div>
                 </div>
             </section>
+
+                <footer id="footer" className="col-xs-12 col-md-12 col-sm-12 col-lg-12 ">
+                    <div id="footer-inside" className="innerXsPadding">
+                        <div id="text-2" className="widget widget_text">
+                            <div className="textwidget">
+                                <Link to="/">Return Home</Link>
+                            </div>
+                        </div>
+                        <div id="text-4" className="widget widget_text">
+                            <div className="textwidget"></div>
+                        </div>
+                        <div id="text-7" className="widget widget_text">
+                            <div className="textwidget">
+                                <a href="https://twitter.com/svenardocom"
+                                    onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://twitter.com/svenardocom', 'Twitter']);"
+                                    target="_blank">Twitter</a>
+                            </div></div></div>
+                 </footer>
+
+
             </div>
+
             );
     }
 });
 
 var Index = React.createClass({
+    getInitialState: function() {
+        return {
+            blogitems: BlogStore.getItems()
+        };
+    },
+    componentWillMount: function () {
+        BlogStore.init();
+        window.sidebar=this;
+    },
+
+    componentDidMount: function() {
+        BlogStore.addChangeListener(this.updateContacts);
+
+    },
+
+    componentWillUnmount: function () {
+        BlogStore.removeChangeListener(this.updateContacts);
+    },
+
+    updateContacts: function (blogitems) {
+        if (!this.isMounted())
+            return;
+
+        this.setState({
+            blogitems: BlogStore.getItems()
+        });
+        jQuery( ".frontPage" ).addClass( "visible animated fadeIn" );
+    },
     render: function() {
-        return <h1>Address Book</h1>;
+        var blogitems = this.state.blogitems.slice(0,5).map(function(article) {
+            var url = article.url.split("/");
+            var urlParams={
+                year:url[3],
+                month:url[4],
+                name:url[5]
+            };
+
+            var ul={
+                listStyle: 'none'
+            };
+
+            var padding={
+                paddingTop:'35px'
+            }
+
+            var updated = moment(new Date(article.updated).getTime()).fromNow();
+//            var excerpt = article.content.match(/<q(.*?)<\/q/);
+
+            return (<section className="">
+                <li key={article.id} style={padding}>
+                    <div className="date-title">{updated}</div>
+                <Link to="blog" params={urlParams}>
+                    <h2 className="fp-title">{article.title}</h2>
+                </Link>
+                </li>
+            </section>)
+        });
+        return (
+            <section className="innerXsPadding">
+                <ul className="frontPage" >
+                    <li>
+                        <h1 className="entry-title">The app coder</h1>
+                        <p className="fp-desc">Things to read for app- &amp; game coders.</p>
+                    </li>
+                        {blogitems}
+                    </ul>
+            </section>
+            );
     }
 });
 
@@ -317,8 +408,9 @@ var Contact = React.createClass({
 
     getStateFromStore: function(props) {
         props = props || this.props;
+        var url="http://www.robbestad.com/"+props.params.year+"/"+props.params.month+"/"+props.params.name;
         return {
-            contact: BlogStore.getContact(props.params.id)
+            contact: BlogStore.getItemByUrl(url)
         };
     },
 
@@ -351,27 +443,25 @@ var Contact = React.createClass({
     },
 
     render: function() {
-        var contact = this.state.contact || {};
-        var name = contact.title;
-        var content = contact.content;
-
+        var article = this.state.contact || {};
+        var title = article.title;
+        //var published = moment(new Date(article.published).getTime()).fromNow();
+        var updated = moment(new Date(article.updated).getTime()).fromNow();
+        var content = article.content;
         return (
                 <section className="innerXsPadding">
-                    <div className="date-title">August 31, 2014</div>
-                    <h2 className="entry-title">{name}</h2>
-
-                <section dangerouslySetInnerHTML={{__html: content}} />
-
+                    <div className="date-title">{updated}</div>
+                    <h2 className="entry-title">{title}</h2>
+                    <section dangerouslySetInnerHTML={{__html: content}} />
                 </section>
             );
     }
 });
-// <button onClick={this.destroy}>Delete</button>
 
 var Sidebar = React.createClass({
     getInitialState: function() {
         return {
-            blogitems: BlogStore.getContacts(),
+            blogitems: BlogStore.getItems(),
             loading: true
         };
     },
@@ -394,13 +484,22 @@ var Sidebar = React.createClass({
             return;
 
         this.setState({
-            blogitems: BlogStore.getContacts(),
+            blogitems: BlogStore.getItems(),
             loading: false
         });
     },
     render: function() {
-        var blogitems = this.state.blogitems.map(function(contact) {
-            return <li key={contact.id}><Link to="contact" className="menuitem" params={contact}>{contact.title}</Link></li>
+        var blogitems = this.state.blogitems.slice(0,10).map(function(article) {
+            var url = article.url.split("/");
+
+            var urlParams={
+                year:url[3],
+                month:url[4],
+                name:url[5]
+            };
+
+            return <li key={article.id}><Link to="blog" className="menuitem"
+                params={urlParams}>{article.title}</Link></li>
         });
         var style;
         if(!this.props.sidebarVisible){
@@ -410,21 +509,21 @@ var Sidebar = React.createClass({
                 height:"100%",
                 width:"0px",
                 marginTop:'40px',
-                zIndex:'0',
+                zIndex:0,
                 position:'absolute',
                 left:0
-
             }
         } else {
             style={
                 display:'block',
                 visibility:'visible',
                 marginTop:'40px',
-                position:'absolute',
+                position:'fixed',
                 left:0,
                 width:this.props.width <= 768 ? this.props.width-3 : (this.props.width-3)/2+"px",
-                height:'100%',
-                zIndex:'998',
+//                height:'100%',
+                backgroundColor: '#fff',
+                zIndex:2,
                 overflowScroll:'touch'
             }
         }
@@ -434,14 +533,14 @@ var Sidebar = React.createClass({
             borderLeft:'1px solid #aaaaaa',
             boxShadow:'3px 0px 0px 0px #FFFFFF'
         };
-        if(window.innerWidth>=768){
-            style={
-                display:'none',
-                visibility:'hidden',
-                height:0,
-                width:0
-            }
-        }
+//        if(window.innerWidth>=768){
+//            style={
+//                display:'none',
+//                visibility:'hidden',
+//                height:0,
+//                width:0
+//            }
+//        }
 
         return (
             <div style={style} className="responsiveList sideBar">
@@ -525,6 +624,7 @@ var routes = (
         <DefaultRoute handler={Index}/>
         <Route name="new" path="contact/new" handler={NewContact}/>
         <Route name="contact" path="contact/:id" handler={Contact}/>
+        <Route name="blog" path=":year/:month/:name" handler={Contact}/>
         <NotFoundRoute handler={NotFound}/>
     </Route>
     );

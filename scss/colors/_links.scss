@@ -7,23 +7,23 @@ a {
   }
 
 a:link    {
-  color: $blue;
+  color: $black;
   -webkit-transition: color .3s ease-in-out;
   transition:         color .3s ease-in-out;
 }
 
 a:visited {
-  color: $orange;
+  color: $olive;
 }
 
 a:hover   {
-  color: $aqua;
+  color: $maroon;
   -webkit-transition: color .3s ease-in-out;
   transition:         color .3s ease-in-out;
 }
 
 a:active  {
-  color: $orange;
+  color: $maroon;
   -webkit-transition: color .3s ease-in-out;
   transition:         color .3s ease-in-out;
 }
