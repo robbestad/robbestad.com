@@ -503,7 +503,7 @@ var Sidebar = React.createClass({
         });
     },
     render: function() {
-        var blogitems = this.state.blogitems.slice(0,20).map(function(article) {
+        var blogitems = this.state.blogitems.slice(0,9).map(function(article) {
             var url = article.url.split("/");
 
             var urlParams={
