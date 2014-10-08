@@ -48,19 +48,6 @@ var BlogStore = {
         });
     },
 
-    addContact: function (contact, cb) {
-        postJSON(api, { contact: contact }, function (res) {
-            _blogData[res.contact.id] = res.contact;
-            BlogStore.notifyChange();
-            if (cb) cb(res.contact);
-        });
-    },
-
-    removeContact: function (id, cb) {
-        deleteJSON(api + '/' + id, cb);
-        delete _blogData[id];
-        BlogStore.notifyChange();
-    },
 
     getItems: function () {
         var array = [];
@@ -282,9 +269,9 @@ var App = React.createClass({
     },
 
     render: function() {
-        var blogitems = this.state.blogitems.map(function(contact) {
-            return <li key={contact.id}><Link to="contact" params={contact}>{contact.title}</Link></li>
-        });
+//        var blogitems = this.state.blogitems.map(function(item) {
+//            return <li key={item.id}><Link to="blog" params={item}>{item.title}</Link></li>
+//        });
         var sidebarVisible=this.state.sidebarVisible;
         var sidebarWidth = document.body.clientWidth;
         return (
@@ -402,7 +389,7 @@ var Index = React.createClass({
     }
 });
 
-var Contact = React.createClass({
+var Article = React.createClass({
 
     mixins: [ Router.Transitions ],
 
@@ -410,7 +397,7 @@ var Contact = React.createClass({
         props = props || this.props;
         var url="http://www.robbestad.com/"+props.params.year+"/"+props.params.month+"/"+props.params.name;
         return {
-            contact: BlogStore.getItemByUrl(url)
+            item: BlogStore.getItemByUrl(url)
         };
     },
 
@@ -419,31 +406,28 @@ var Contact = React.createClass({
     },
 
     componentDidMount: function() {
-        BlogStore.addChangeListener(this.updateContact);
+        BlogStore.addChangeListener(this.updateItems);
     },
 
     componentWillUnmount: function () {
-        BlogStore.removeChangeListener(this.updateContact);
+        BlogStore.removeChangeListener(this.updateItems);
     },
 
     componentWillReceiveProps: function(newProps) {
         this.setState(this.getStateFromStore(newProps));
     },
 
-    updateContact: function () {
+    updateItems: function () {
         if (!this.isMounted())
             return;
 
         this.setState(this.getStateFromStore())
     },
 
-    destroy: function() {
-        BlogStore.removeContact(this.props.params.id);
-        this.transitionTo('/');
-    },
+
 
     render: function() {
-        var article = this.state.contact || {};
+        var article = this.state.item || {};
         var title = article.title;
         //var published = moment(new Date(article.published).getTime()).fromNow();
         var updated = moment(new Date(article.updated).getTime()).fromNow();
@@ -552,35 +536,6 @@ var Sidebar = React.createClass({
     }
 });
 
-var NewContact = React.createClass({
-
-    mixins: [ Router.Transitions ],
-
-    createContact: function(event) {
-        event.preventDefault();
-        BlogStore.addContact({
-            first: this.refs.first.getDOMNode().value,
-            last: this.refs.last.getDOMNode().value
-        }, function(contact) {
-            this.transitionTo('contact', { id: contact.id });
-        }.bind(this));
-    },
-
-    render: function() {
-        return (
-            <form onSubmit={this.createContact}>
-                <p>
-                    <input type="text" ref="first" placeholder="First name"/>
-                    <input type="text" ref="last" placeholder="Last name"/>
-                </p>
-                <p>
-                    <button type="submit">Save</button> <Link to="/">Cancel</Link>
-                </p>
-            </form>
-            );
-    }
-});
-
 var NotFound = React.createClass({
     render: function() {
         return <h2>Not found</h2>;
@@ -622,9 +577,7 @@ function deleteJSON(url, cb) {
 var routes = (
     <Route handler={App}>
         <DefaultRoute handler={Index}/>
-        <Route name="new" path="contact/new" handler={NewContact}/>
-        <Route name="contact" path="contact/:id" handler={Contact}/>
-        <Route name="blog" path=":year/:month/:name" handler={Contact}/>
+        <Route name="blog" path=":year/:month/:name" handler={Article}/>
         <NotFoundRoute handler={NotFound}/>
     </Route>
     );

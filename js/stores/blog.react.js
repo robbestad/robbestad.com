@@ -54,11 +54,11 @@ var BlogStore = {
         });
     },
 //
-//    addItem: function (contact, cb) {
-//        postJSON(api, { contact: contact }, function (res) {
-//            _blogdata[res.contact.id] = res.contact;
+//    addItem: function (item, cb) {
+//        postJSON(api, { item: item }, function (res) {
+//            _blogdata[res.item.id] = res.item;
 //            BlogStore.notifyChange();
-//            if (cb) cb(res.contact);
+//            if (cb) cb(res.item);
 //        });
 //    },
 //
