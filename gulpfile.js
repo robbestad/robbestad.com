@@ -52,11 +52,6 @@ gulp.task('scss', function () {
         .pipe(reload({stream: true}));
 });
 
-gulp.task('clean-css', function(cb){
-    del(['css/app.css'], function (err) {
-        console.log('css deleted');
-    });
-});
 
 gulp.task('cssbundle', ['scss'], function () {
     return gulp.src(paths.css)
