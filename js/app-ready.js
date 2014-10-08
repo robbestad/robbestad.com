@@ -218,7 +218,6 @@ var $ = require("jquery");
     // Export the control.
     window.hamburgerButton = hb;
 })();
-
 function once (fn) {
     var f = function () {
         if (f.hasResult) return f.value;
@@ -231,7 +230,6 @@ function once (fn) {
     f.hasResult = false;
     return f;
 }
-
 $(document).ready(function () {
 //    FastClick.attach(document.body);
     once(function(arg) {
@@ -245,13 +243,14 @@ $(document).ready(function () {
             new hamburgerButton.HamburgerButton(ex, size, color);
         })(document.getElementById('hamburgerButton'), 28, '#000000');
     })();
-
-    $("#hamburgerButton").click(function(){
+    $("#hamburger").click(function(){
         app.toggleSidebarVisibility();
     });
+//    $("#hamburgerButton").click(function(){
+//        app.toggleSidebarVisibility();
+//    });
     $('body').on('click', 'a.menuitem', function() {
         $("#hamburger").trigger("click");
         window.scrollTo(0,0);
     });
 });
-

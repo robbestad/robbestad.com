@@ -5,13 +5,10 @@ var gulp = require('gulp'),
     csso = require('gulp-csso'),
     uglify = require('gulp-uglify'),
     autoprefixer = require('gulp-autoprefixer'),
-    imagemin = require('gulp-imagemin'),
-    del = require('del'),
     plumber = require('gulp-plumber'),
     notify = require("gulp-notify"),
     browserSync = require('browser-sync'),
     reload = browserSync.reload,
-    shell = require('gulp-shell'),
     jshint      = require('gulp-jshint'),
     nodemon = require('gulp-nodemon');
 
@@ -19,15 +16,12 @@ var gulp = require('gulp'),
 gulp.task('default', ['cssbundle', 'lint', 'watch'], function () {
     gulp.watch('js/**/*', ['lint', reload]);
 });
-
 gulp.task('serve', ['default', 'browser-sync'], function () {
     gulp.watch('js/**/*', ['lint', reload]);
 });
-
 gulp.task('watch', function () {
     gulp.watch('scss/**/*', ['cssbundle']);
 });
-
 
 // paths
 var paths = {
@@ -39,8 +33,6 @@ var paths = {
         'css/**/*'],
     fonts: ['']
 };
-
-
 // css tasks
 gulp.task('scss', function () {
     return gulp.src(paths.scss)
@@ -51,14 +43,11 @@ gulp.task('scss', function () {
         .pipe(gulp.dest('css'))
         .pipe(reload({stream: true}));
 });
-
-
 gulp.task('cssbundle', ['scss'], function () {
     return gulp.src(paths.css)
         .pipe(concat('bundle.min.css'))
         .pipe(gulp.dest('assets'));
 });
-
 // Server tasks
 gulp.task('browser-sync', ['nodemon'], function() {
     browserSync({
@@ -71,7 +60,6 @@ gulp.task('browser-sync', ['nodemon'], function() {
     });
 
 });
-
 gulp.task('nodemon', function (cb) {
     return nodemon({
         script: 'index.js',
@@ -81,7 +69,6 @@ gulp.task('nodemon', function (cb) {
         ]
     })
 });
-
 // Lint task.
 gulp.task('lint', function () {
     gulp.src('js/**/*')
