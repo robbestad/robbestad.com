@@ -18,6 +18,8 @@ var _initCalled = false;
 
 React.initializeTouchEvents(true);
 
+var menuBreakpoint=1024;
+
 var SetIntervalMixin = {
     componentWillMount: function() {
         this.intervals = [];
@@ -238,12 +240,12 @@ var App = React.createClass({
             cf.css("opacity", 1);
             jQuery("body").css("overflow","visible");
 
-        } else if(b.width()<=768){
+        } else if(b.width()<=menuBreakpoint){
             var scrollPosition = [
                     self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
                     self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
             ];
-            var width = this.state.width < 768 ? this.state.width : this.state.width/2;
+            var width = this.state.width < menuBreakpoint ? this.state.width : this.state.width/2;
 
             sb.css("overflowY", "auto");
             cf.css("position", "fixed");
@@ -527,13 +529,13 @@ var Sidebar = React.createClass({
             position:'absolute',
             left:0,
             top:document.body.scrollTop+"px",
-            width:this.props.width <= 768 ? this.props.width-3 : (this.props.width-3)/2+"px",
+            width:this.props.width <= menuBreakpoint ? this.props.width-3 : (this.props.width-3)/2+"px",
             backgroundColor: '#fff',
             zIndex:2,
             overflowScroll:'touch'
         };
 
-        if(this.props.width <= 768 && this.props.sidebarVisible){
+        if(this.props.width <= menuBreakpoint && this.props.sidebarVisible){
             style={
                 display:'block',
                 visibility:'visible',
