@@ -88,6 +88,83 @@ var BlogStore = {
 
 };
 
+var Spinner = React.createClass({
+    getInitialState:function(){
+      return {
+          spinnerVisible:true
+      }
+    },
+    componentWillMount: function () {
+        window.spinner=this;
+    },
+    toggleSpinner:function(){
+      this.setState({spinnerVisible:!this.state.spinnerVisible});
+    },
+    render: function() {
+//        for (var i = 12; i > 0; i--) {
+//            barStyle = {};
+//            barStyle.WebkitAnimationDelay = barStyle.animationDelay =
+//                (i + 12) / 10 + 's';
+//
+//            barStyle.WebkitTransform = barStyle.transform =
+//                'rotate(' + (i * 30) + 'deg) translate(146%)';
+//
+//            bars.push(
+//                <div style={barStyle} className="bars" key={i} />
+//            );
+//        }
+//        var spinWheel=[];
+//        var spinnerStyle={};
+//        var spinnerStyle={
+//            display:"block",
+//            position: "relative",
+//            width: "64px",
+//            height: "64px",
+//            margin: "0 auto",
+//            zIndex: "99"
+//        };
+//        for (var i = 12; i > 0; i--) {
+//            spinnerStyle = {};
+//            spinnerStyle.WebkitAnimationDelay = spinnerStyle.animationDelay =
+//                (i + 12) / 10 + 's';
+//            spinnerStyle.WebkitTransform = spinnerStyle.transform =
+//                'rotate(' + (i * 30) + 'deg)';
+//            spinWheel.push(
+//                <div style={spinnerStyle} className="spinner" key={i} />
+//            );
+//        }
+//
+//        if(!this.state.spinnerVisible){
+//            spinnerStyle={
+//                display:"none"
+//            };
+//        }
+//
+//        return (
+//            <div className="spinner" >{spinWheel}</div>
+//            );
+
+        var spinnerStyle={
+            display:"block",
+            position: "relative",
+            width: "64px",
+            height: "64px",
+            margin: "0 auto",
+            zIndex: "99"
+        };
+
+
+        if(!this.state.spinnerVisible){
+            spinnerStyle={
+                display:"none"
+            };
+        }
+
+        return (
+            <div className="spinner" style={spinnerStyle} />
+        );
+    }
+});
 
 var Menu = React.createClass({
     mixins: [SetIntervalMixin ],
@@ -300,6 +377,7 @@ var App = React.createClass({
             blogitems: BlogStore.getItems(),
             loading: false
         });
+        window.spinner.toggleSpinner();
     },
 
     render: function() {
@@ -308,6 +386,7 @@ var App = React.createClass({
         return (
             <div>
                 <Menu />
+
                 <Sidebar sidebarVisible={sidebarVisible} width={sidebarWidth} />
                 <section className="container-fluid">
                   <div className="row-fluid">
@@ -316,6 +395,7 @@ var App = React.createClass({
                     </div>
                     <div className="article col-sm-12 col-xs-12 col-md-10 col-lg-10">
                         {this.props.activeRouteHandler()}
+                        <Spinner />
                     </div>
                     <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
 
@@ -409,7 +489,9 @@ var Index = React.createClass({
         });
         return (
             <section className="innerXsPadding">
+
                 <ul className="frontPage" >
+
                     <li>
                         <h1 className="entry-title">The app coder</h1>
                         <p className="fp-desc">Things to read for app- &amp; game coders.</p>

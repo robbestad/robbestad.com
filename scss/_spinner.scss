@@ -1,0 +1,66 @@
+.spinner {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+  padding: 0 0 0 0;
+  z-index:99;
+}
+
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+@-webkit-keyframes spinner {
+  to {-webkit-transform: rotate(360deg);}
+}
+.spinner:not(:required):before {
+  content: '';
+  border-radius: 50%;
+  border: 5px solid #f6f;
+  border-top-color: #0e0;
+  border-right-color: #0dd;
+  border-bottom-color: #f90;
+  animation: spinner .6s linear infinite;
+  -webkit-animation: spinner .6s linear infinite;
+}
+.spinner:before {
+  content: 'Loading…';
+  position: absolute;
+  width: 64px;
+  height: 64px;
+}
+
+
+
+
+
+
+//
+//@keyframes react-spinner_spin {
+//  0% {
+//    opacity: 1;
+//  }
+//  100% {
+//    opacity: 0.15;
+//  }
+//}
+//
+//@-moz-keyframes react-spinner_spin {
+//  0% {
+//    opacity: 1;
+//  }
+//  100% {
+//    opacity: 0.15;
+//  }
+//}
+//
+//@-webkit-keyframes react-spinner_spin {
+//  0% {
+//    opacity: 1;
+//  }
+//  100% {
+//    opacity: 0.15;
+//  }
+//}
