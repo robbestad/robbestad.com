@@ -235,6 +235,7 @@ var App = React.createClass({
             sb.css("overflowY", "auto");
             cf.css("position", "relative");
             sb.css("height", "0px");
+            cf.css("opacity", 1);
             jQuery("body").css("overflow","visible");
 
         } else if(b.width()<=768){
@@ -246,6 +247,7 @@ var App = React.createClass({
 
             sb.css("overflowY", "auto");
             cf.css("position", "fixed");
+            cf.css("opacity", 0);
             sb.css("height", "100%");
             window.scrollTo(0, 0);
             sb.animate({
