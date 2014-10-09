@@ -9,6 +9,10 @@
     "test": "jest",
     "postinstall": "browserify . | node_modules/.bin/uglifyjs -cm > assets/bundle.min.js"
   },
+  "repository":{
+      "type":"git",
+      "url":"https://github.com/svenanders/robbestad.com"
+  },
   "author": "Sven Anders Robbestad",
   "license": "ISC",
   "dependencies": {
