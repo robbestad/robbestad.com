@@ -18,7 +18,7 @@ var _initCalled = false;
 
 React.initializeTouchEvents(true);
 
-var menuBreakpoint=1024;
+var menuBreakpoint=3068;
 
 var SetIntervalMixin = {
     componentWillMount: function() {
@@ -303,9 +303,6 @@ var App = React.createClass({
     },
 
     render: function() {
-//        var blogitems = this.state.blogitems.map(function(item) {
-//            return <li key={item.id}><Link to="blog" params={item}>{item.title}</Link></li>
-//        });
         var sidebarVisible=this.state.sidebarVisible;
         var sidebarWidth = document.body.clientWidth;
         return (
@@ -330,7 +327,7 @@ var App = React.createClass({
                     <div id="footer-inside" className="innerXsPadding">
                         <div id="text-2" className="widget widget_text">
                             <div className="textwidget">
-                                <Link to="/">Home</Link>
+                                <Link to="/" className="menuitem">Home</Link>
                             </div>
                         </div>
                         <div id="text-4" className="widget widget_text">
@@ -339,6 +336,7 @@ var App = React.createClass({
                         <div id="text-7" className="widget widget_text">
                             <div className="textwidget">
                                 <a href="https://twitter.com/svenardocom"
+                                    className="menuitem"
                                     onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://twitter.com/svenardocom', 'Twitter']);"
                                     target="_blank">Twitter</a>
                             </div></div></div>
@@ -563,14 +561,23 @@ var Sidebar = React.createClass({
         var bg={
             borderRight:'1px solid #aaaaaa',
             borderLeft:'1px solid #aaaaaa',
-            boxShadow:'3px 0px 0px 0px #FFFFFF'
+            boxShadow:'3px 0px 0px 0px #FFFFFF',
         };
-
+        var noPadding={
+            padding:0
+        }
         return (
             <div style={style} className="responsiveList sideBar">
+                <section className="col-xs-12 col-sm-12 col-md-6 col-lg-6" style={noPadding}>
                 <ul className="slider sliderItem" style={bg} >
                 {blogitems}
                  </ul>
+                 </section>
+                <section className="hidden-xs hidden-sm col-md-6 col-lg-6">
+
+                    <h3>Search</h3>
+                    <p>Search...</p>
+                </section>
             </div>
             )
     }
