@@ -439,6 +439,7 @@ var Article = React.createClass({
 
     componentDidMount: function() {
         BlogStore.addChangeListener(this.updateItems);
+        window.scrollTo(0,0);
     },
 
     componentWillUnmount: function () {
