@@ -237,7 +237,7 @@ var App = React.createClass({
             sb.css("height", "0px");
             jQuery("body").css("overflow","visible");
 
-        } else if(b.width()<768){
+        } else if(b.width()<=768){
             var scrollPosition = [
                     self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
                     self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
@@ -521,13 +521,13 @@ var Sidebar = React.createClass({
             visibility:'visible',
             marginTop:'40px',
 //            position:'fixed',
+//            height:'100%',
             position:'absolute',
             left:0,
             top:document.body.scrollTop+"px",
             width:this.props.width <= 768 ? this.props.width-3 : (this.props.width-3)/2+"px",
             backgroundColor: '#fff',
             zIndex:2,
-//            height:'100%',
             overflowScroll:'touch'
         };
 
