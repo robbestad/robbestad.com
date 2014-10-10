@@ -100,6 +100,9 @@ var Spinner = React.createClass({
     toggleSpinner:function(){
       this.setState({spinnerVisible:!this.state.spinnerVisible});
     },
+    hideSpinner:function(){
+      this.setState({spinnerVisible:false});
+    },
     render: function() {
 //        for (var i = 12; i > 0; i--) {
 //            barStyle = {};
@@ -536,7 +539,7 @@ var Article = React.createClass({
         if (!this.isMounted())
             return;
 
-        if(undefined !== window.spinner) window.spinner.toggleSpinner();
+
 
         this.setState(this.getStateFromStore())
     },

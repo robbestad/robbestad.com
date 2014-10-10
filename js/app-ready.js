@@ -254,4 +254,6 @@ $(document).ready(function () {
         $("#hamburger").trigger("click");
         window.scrollTo(0,0);
     });
+
+    if(undefined !== window.spinner) window.spinner.hideSpinner();
 });
