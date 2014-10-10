@@ -3,6 +3,12 @@ var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;
+
+//var sweetAlert = require("./alert");
+//sweetAlert("Oops...", "Something went wrong!", "error");
+//var Metagrid = require ("./components/metagrid");
+var Metagrid = require ("react-grid");
+
 var Routes = Router.Routes;
 var Link = Router.Link;
 var NotFoundRoute = Router.NotFoundRoute;
@@ -16,6 +22,8 @@ var api = 'http://api.robbestad.com/robbestad';
 var _blogData = {};
 var _changeListeners = [];
 var _initCalled = false;
+
+
 
 React.initializeTouchEvents(true);
 
@@ -226,7 +234,19 @@ var App = React.createClass({
             sidebarVisible: false
         };
     },
-
+    hideSidebar:function(){
+        var state=this.state,
+            b=jQuery("body"),
+            cf=jQuery(".container-fluid"),
+            sb=jQuery(".sideBar");
+        sb.css("overflowY", "auto");
+        cf.css("position", "relative");
+        sb.css("height", "0px");
+        cf.css("opacity", 1);
+        b.css("overflow","visible");
+        state.sidebarVisible=!state.sidebarVisible;
+        this.setState(state);
+    },
     toggleSidebarVisibility:function() {
         var state=this.state,
             b=jQuery("body"),
@@ -331,7 +351,7 @@ var App = React.createClass({
                     <div id="footer-inside" className="innerXsPadding">
                         <div id="text-2" className="widget widget_text">
                             <div className="textwidget">
-                                <Link to="/" className="menuitem">Home</Link>
+                                <Link to="/" className="footeritem">Home</Link>
                             </div>
                         </div>
                         <div id="text-4" className="widget widget_text">
@@ -340,7 +360,7 @@ var App = React.createClass({
                         <div id="text-7" className="widget widget_text">
                             <div className="textwidget">
                                 <a href="https://twitter.com/svenardocom"
-                                    className="menuitem"
+                                    className="footeritem"
                                     onclick="_gaq.push(['_trackEvent', 'outbound-widget', 'https://twitter.com/svenardocom', 'Twitter']);"
                                     target="_blank">Twitter</a>
                             </div></div></div>

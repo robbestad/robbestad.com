@@ -2,6 +2,11 @@
     'use strict';
 })();
 
+
+//var sweetAlert = require("./alert");
+//sweetAlert("Oops...", "Something went wrong!", "error");
+//
+
 var rebound = require("rebound");
 var $ = require("jquery");
 
@@ -252,6 +257,10 @@ $(document).ready(function () {
 //    });
     $('body').on('click', 'a.menuitem', function() {
         $("#hamburger").trigger("click");
+        window.scrollTo(0,0);
+    });
+    $('body').on('click', 'a.footeritem', function() {
+        app.hideSidebar();
         window.scrollTo(0,0);
     });
 
