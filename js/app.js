@@ -10,6 +10,7 @@ var $ = require('jquery')(window);
 var jQuery = require('jquery');
 var appr = require('./app-ready');
 var moment = require ('moment');
+var Spinner = require ('./components/spinner.react');
 
 var api = 'http://api.robbestad.com/robbestad';
 var _blogData = {};
@@ -87,87 +88,6 @@ var BlogStore = {
     }
 
 };
-
-var Spinner = React.createClass({
-    getInitialState:function(){
-      return {
-          spinnerVisible:true
-      }
-    },
-    componentWillMount: function () {
-        window.spinner=this;
-    },
-    toggleSpinner:function(){
-      this.setState({spinnerVisible:!this.state.spinnerVisible});
-    },
-    hideSpinner:function(){
-      this.setState({spinnerVisible:false});
-    },
-    render: function() {
-//        for (var i = 12; i > 0; i--) {
-//            barStyle = {};
-//            barStyle.WebkitAnimationDelay = barStyle.animationDelay =
-//                (i + 12) / 10 + 's';
-//
-//            barStyle.WebkitTransform = barStyle.transform =
-//                'rotate(' + (i * 30) + 'deg) translate(146%)';
-//
-//            bars.push(
-//                <div style={barStyle} className="bars" key={i} />
-//            );
-//        }
-//        var spinWheel=[];
-//        var spinnerStyle={};
-//        var spinnerStyle={
-//            display:"block",
-//            position: "relative",
-//            width: "64px",
-//            height: "64px",
-//            margin: "0 auto",
-//            zIndex: "99"
-//        };
-//        for (var i = 12; i > 0; i--) {
-//            spinnerStyle = {};
-//            spinnerStyle.WebkitAnimationDelay = spinnerStyle.animationDelay =
-//                (i + 12) / 10 + 's';
-//            spinnerStyle.WebkitTransform = spinnerStyle.transform =
-//                'rotate(' + (i * 30) + 'deg)';
-//            spinWheel.push(
-//                <div style={spinnerStyle} className="spinner" key={i} />
-//            );
-//        }
-//
-//        if(!this.state.spinnerVisible){
-//            spinnerStyle={
-//                display:"none"
-//            };
-//        }
-//
-//        return (
-//            <div className="spinner" >{spinWheel}</div>
-//            );
-
-        var spinnerStyle={
-            display:"block",
-            position: "relative",
-            width: "64px",
-            height: "64px",
-            margin: "0 auto",
-            zIndex: "99"
-        };
-
-
-        if(!this.state.spinnerVisible){
-            spinnerStyle={
-                display:"none"
-            };
-        }
-
-        return (
-            <div className="spinner" style={spinnerStyle} />
-        );
-    }
-});
 
 var Menu = React.createClass({
     mixins: [SetIntervalMixin ],
@@ -366,6 +286,7 @@ var App = React.createClass({
 
     componentDidMount: function() {
         BlogStore.addChangeListener(this.updateContacts);
+        if(undefined !== window.spinner) window.spinner.showSpinner();
     },
 
     componentWillUnmount: function () {
@@ -380,7 +301,7 @@ var App = React.createClass({
             blogitems: BlogStore.getItems(),
             loading: false
         });
-        window.spinner.toggleSpinner();
+        window.spinner.hideSpinner();
     },
 
     render: function() {
