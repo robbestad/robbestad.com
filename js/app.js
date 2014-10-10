@@ -362,14 +362,14 @@ var App = React.createClass({
     },
 
     componentDidMount: function() {
-        BlogStore.addChangeListener(this.updateContacts);
+        BlogStore.addChangeListener(this.updateComponent);
     },
 
     componentWillUnmount: function () {
-        BlogStore.removeChangeListener(this.updateContacts);
+        BlogStore.removeChangeListener(this.updateComponent);
     },
 
-    updateContacts: function (blogitems) {
+    updateComponent: function (blogitems) {
         if (!this.isMounted())
             return;
 
@@ -536,7 +536,8 @@ var Article = React.createClass({
         if (!this.isMounted())
             return;
 
-        this.setState(this.getStateFromStore())
+        this.setState(this.getStateFromStore());
+        window.spinner.toggleSpinner();
     },
 
 
