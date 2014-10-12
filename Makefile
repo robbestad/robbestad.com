@@ -20,6 +20,7 @@ release-major: lint test
 
 publish:
 	git push --tags origin HEAD:master
+	git push heroku master
 #	npm publish
 
 define release
