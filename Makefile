@@ -20,7 +20,7 @@ release-major: lint test
 
 publish:
 	git push --tags origin HEAD:master
-	npm publish
+#	npm publish
 
 define release
 	npm version $(1)
