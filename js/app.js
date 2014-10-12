@@ -337,7 +337,7 @@ var App = React.createClass({
                   <div className="row-fluid">
                     <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
                         <StickyDiv togglepoint="85" top="40" height="50" width="100" >
-                        Sticky divs with react
+                        A sticky div with <a href="https://www.npmjs.org/package/react-stickydiv">react-stickydiv</a>
                         </StickyDiv>
 
                     </div>
@@ -346,9 +346,6 @@ var App = React.createClass({
                         <Spinner />
                     </div>
                     <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
-                        <StickyDiv togglepoint="85" top="40" height="100" width="100" >
-                        Sticky Div
-                        </StickyDiv>
 
 
                     </div>
