@@ -1,6 +1,6 @@
 {
   "name": "robbestad",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Robbestad.com, built with react on top of node express",
   "main": "js/app.js",
   "scripts": {
