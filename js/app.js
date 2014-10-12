@@ -16,6 +16,7 @@ var $ = require('jquery')(window);
 var jQuery = require('jquery');
 var appr = require('./app-ready');
 var moment = require ('moment');
+var StickyDiv = require ('react-stickydiv');
 var Spinner = require ('./components/spinner.react');
 
 var api = 'http://api.robbestad.com/robbestad';
@@ -335,6 +336,9 @@ var App = React.createClass({
                 <section className="container-fluid">
                   <div className="row-fluid">
                     <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
+                        <StickyDiv togglepoint="85" top="40" height="50" width="100" >
+                        Sticky divs with react
+                        </StickyDiv>
 
                     </div>
                     <div className="article col-sm-12 col-xs-12 col-md-10 col-lg-10">
@@ -342,6 +346,10 @@ var App = React.createClass({
                         <Spinner />
                     </div>
                     <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
+                        <StickyDiv togglepoint="85" top="40" height="100" width="100" >
+                        Sticky Div
+                        </StickyDiv>
+
 
                     </div>
                 </div>
@@ -437,7 +445,7 @@ var Index = React.createClass({
                 <ul className="frontPage" >
 
                     <li>
-                        <h1 className="entry-title">The app coder</h1>
+                        <h1 className="entry-title">www</h1>
                         <p className="fp-desc">Things to read for app- &amp; game coders.</p>
                     </li>
                         {blogitems}

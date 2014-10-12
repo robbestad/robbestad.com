@@ -1,17 +1,17 @@
+/*global require, __dirname */
+'use strict';
 // Import required modules
-var express = require('express'),
-//    stormpath = require('express-stormpath'),
-    swig  = require('swig'),
-    compress = require('compression'),
-    $ = require('jquery');
-
-// Initialize our app
-var app = express();
+var express = require('express')
+//    stormpath = require('express-stormpath')
+    , swig  = require('swig')
+    , compress = require('compression')
+    //$ = require('jquery');
+    , app = express();
     app.use(compress());   
 var css = ['node_modules/bootstrap/dist/css/bootstrap.css',
            'css/main.css'],
     js = ['node_modules/jquery/dist/jquery.js',
-        'js/bundle.js'];
+        'js/bundle.js'],
     title = 'Robbestad.com';
 if ('production' == app.get('env')) {
   css = ['assets/bundle.min.css'],
@@ -26,7 +26,7 @@ if ('production' == app.get('env')) {
 //  app.get('/dashboard', stormpath.loginRequired, function(req, res) {
 //    res.send('Hi: ' + req.user.email + '. Logout <a href="/logout">here</a>');
 //  });
-};
+}
 
 app.get('/', function(req, res) {
   var template = swig.compileFile(__dirname + '/index.html');
