@@ -503,7 +503,8 @@ var Article = React.createClass({
                     <div className="date-title">{updated}</div>
                     <h2 className="entry-title">{title}</h2>
                     <section dangerouslySetInnerHTML={{__html: content}} />
-                </section>
+                    <div id="disqus_thread"></div>
+        </section>
             );
     }
 });
