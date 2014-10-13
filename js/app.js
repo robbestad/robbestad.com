@@ -336,8 +336,8 @@ var App = React.createClass({
                 <section className="container-fluid">
                   <div className="row-fluid">
                     <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
-                        <StickyDiv togglepoint="85" top="40" height="50" width="100" >
-                        A sticky div with <a href="https://www.npmjs.org/package/react-stickydiv">react-stickydiv</a>
+                        <StickyDiv togglepoint="69" top="40" width="100" >
+                            A sticky div with <a href="https://www.npmjs.org/package/react-stickydiv">react-stickydiv</a>
                         </StickyDiv>
 
                     </div>

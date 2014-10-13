@@ -10,6 +10,7 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload,
     jshint      = require('gulp-jshint'),
+    shell      = require('gulp-shell'),
     nodemon = require('gulp-nodemon');
 
 // tasks
@@ -22,6 +23,29 @@ gulp.task('serve', ['default', 'browser-sync'], function () {
 gulp.task('watch', function () {
     gulp.watch('scss/**/*', ['cssbundle']);
 });
+
+//maintenance tasks
+gulp.task('test', shell.task([
+    './node_modules/.bin/mocha -t 5000 -b -R spec spec.js'
+]));
+gulp.task('lint', shell.task([
+    './node_modules/.bin/jsxhint -c .jshintrc ./index.js'
+]));
+gulp.task('release-minor', shell.task([
+    'npm version minor'
+]));
+gulp.task('release-major', shell.task([
+    'npm version major'
+]));
+gulp.task('release-patch', shell.task([
+    'npm version patch'
+]));
+gulp.task('publish', shell.task([
+    'git push --tags origin HEAD:master',
+    'git push heroku master'
+]));
+
+
 
 // paths
 var paths = {
