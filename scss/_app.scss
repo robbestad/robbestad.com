@@ -6,9 +6,8 @@
 }
 
 html, body {
-  //  height: 100%!important;
-  /* The html and body elements cannot have any padding or margin. */
   font-family: 'freight-text-pro', Georgia, serif;
+  background: url(/img/f2f2f2_bg.png) #f2f2f2;
   line-height: 22px;
   &::selection {
     background: #DD574C;
@@ -26,8 +25,7 @@ html, body {
 //    transform: matrix(0.866,0.5,-0.5,0.866,0,0);
 }
 .row {
-//  display: inline-flex;
-  background-color: white;
+/*  background-color: white;*/
 }
 
 .container-fluid {
@@ -60,9 +58,9 @@ ul.frontPage {
 }
 
 .sidebar {
-  //  background-color: #e0e0e0;
   z-index: 1;
-  background-color: $white;
+  /*background-color: $white;*/
+  min-width: 100px;
   padding: 10% 1% 0 1%;
   transition: visibility 0s 2s, opacity 2s linear;
 }
@@ -77,7 +75,6 @@ a {
   text-decoration: none;
   color: #000000;
 }
-
 
 .article {
   transition: visibility 0s 2s, opacity 2s linear;
