@@ -344,6 +344,7 @@ var App = React.createClass({
             boxShadow:'0  0 3px #dadada'
         }
 
+
         return (
             <div>
                 <Menu />
@@ -353,11 +354,15 @@ var App = React.createClass({
                 <section className="container-fluid">
                   <div className="row-fluid">
                     <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
-                        <StickyDiv togglepoint="69" top="40" width="100" >
+                        <StickyDiv togglepoint="64" top="45" width="100">
+                            <a target="_blank" href="https://www.npmjs.org/package/react-stickydiv">
                             <img src="img/npm_1x.png" 
                             srcset="img/npm_1x.png 480w, img/npm_2x.png 640w, img/npm_3x.png 800w" 
-                            width="100" height="39" /> 
-                            A sticky div with <a href="https://www.npmjs.org/package/react-stickydiv">react-stickydiv</a>
+                            width="100" height="39" /> </a>
+                            <span>
+                            A sticky div with&nbsp; 
+                            <a target="_blank" href="https://www.npmjs.org/package/react-stickydiv">react-stickydiv</a>
+                            </span>
                         </StickyDiv>
 
                     </div>

@@ -78,7 +78,9 @@ a {
   color: #000000;
 }
 
+
 .article {
+  transition: visibility 0s 2s, opacity 2s linear;
   transition: 3s;
   border-radius: 5px 0 0 0;
   a {
