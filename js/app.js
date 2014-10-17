@@ -195,11 +195,13 @@ var Menu = React.createClass({
             top: '0px',
             width: document.body.clientWidth+"px",
             zIndex:5,
-            borderRadius: '5px',
-            borderBottom: '1px solid #a5a5a5',
-            boxShadow:'3px 0px 3px 1px #FFFFFF'
-
+            borderRadius: '2px',
+            background: 'linear-gradient(to bottom, #fff, #f7f7f7)',
+            borderBottom: '1px solid #e1e1e1',
+            boxShadow:'0 1px 3px #dadada'
         };
+
+
         var inFront={
             zIndex:3
         };
@@ -327,6 +329,14 @@ var App = React.createClass({
     render: function() {
         var sidebarVisible=this.state.sidebarVisible;
         var sidebarWidth = document.body.clientWidth;
+        var footerStyle={
+            borderRadius: '2px',
+            paddingTop:'10px',
+            background: 'linear-gradient(to bottom, #fff, #f7f7f7)',
+            borderTop: '1px solid #e1e1e1',
+            boxShadow:'0 -5px 3px #dadada'
+        }
+
         return (
             <div>
                 <Menu />
@@ -351,7 +361,7 @@ var App = React.createClass({
                     </div>
                 </section>
 
-                <footer id="footer" className="col-xs-12 col-md-12 col-sm-12 col-lg-12 ">
+                <footer id="footer" style={footerStyle} className="col-xs-12 col-md-12 col-sm-12 col-lg-12 ">
                     <div id="footer-inside" className="innerXsPadding">
                         <div id="text-2" className="widget widget_text">
                             <div className="textwidget">

@@ -8,7 +8,6 @@
 html, body {
   //  height: 100%!important;
   /* The html and body elements cannot have any padding or margin. */
-  background-color: $white;
   font-family: 'freight-text-pro', Georgia, serif;
   line-height: 22px;
   &::selection {
@@ -22,7 +21,6 @@ html, body {
   font-size: 2rem;
   float: left;
   padding: 10px 5px;
-  border-top: 0;
   z-index: 2;
   height:40px;
 //    transform: matrix(0.866,0.5,-0.5,0.866,0,0);
