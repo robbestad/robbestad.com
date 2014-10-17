@@ -334,7 +334,7 @@ var App = React.createClass({
             paddingTop:'10px',
             background: 'linear-gradient(to bottom, #fff, #f7f7f7)',
             borderTop: '1px solid #e1e1e1',
-            boxShadow:'0 -2px 3px #dadada'
+            boxShadow:'0  0 3px #dadada'
         }
 
         return (
