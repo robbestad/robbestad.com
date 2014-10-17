@@ -306,6 +306,13 @@ var App = React.createClass({
         window.app=this;
     },
 
+    componentWillReceiveProps: function(){
+        jQuery(".article").addClass("animated fadeIn")
+            .delay(500).queue(function(){
+            jQuery(this).removeClass("animated fadeIn").dequeue();
+        });
+
+    },
     componentDidMount: function() {
         BlogStore.addChangeListener(this.updateContacts);
         if(undefined !== window.spinner) window.spinner.showSpinner();
