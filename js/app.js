@@ -354,6 +354,9 @@ var App = React.createClass({
                   <div className="row-fluid">
                     <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
                         <StickyDiv togglepoint="69" top="40" width="100" >
+                            <img src="img/npm_1x.png" 
+                            srcset="img/npm_1x.png 480w, img/npm_2x.png 640w, img/npm_3x.png 800w" 
+                            width="100" height="39" /> 
                             A sticky div with <a href="https://www.npmjs.org/package/react-stickydiv">react-stickydiv</a>
                         </StickyDiv>
 
