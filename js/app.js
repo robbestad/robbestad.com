@@ -311,11 +311,12 @@ var App = React.createClass({
             .delay(500).queue(function(){
             jQuery(this).removeClass("animated fadeIn").dequeue();
         });
+        jQuery(".myspinner").css("visibility","hidden");
 
     },
     componentDidMount: function() {
         BlogStore.addChangeListener(this.updateContacts);
-        if(undefined !== window.spinner) window.spinner.showSpinner();
+        //if(undefined !== window.spinner) window.spinner.showSpinner();
     },
 
     componentWillUnmount: function () {
@@ -330,7 +331,9 @@ var App = React.createClass({
             blogitems: BlogStore.getItems(),
             loading: false
         });
-        if(undefined !== window.spinner) window.spinner.hideSpinner();
+
+        jQuery(".myspinner").css("visibility","hidden");
+        //if(undefined !== window.spinner) window.spinner.hideSpinner();
     },
 
     render: function() {
@@ -365,12 +368,13 @@ var App = React.createClass({
                             <img src="img/npm_1x.png" 
                             srcset="img/npm_1x.png 480w, img/npm_2x.png 640w, img/npm_3x.png 800w" 
                             width="100" height="39" /> </a>
-                            A sticky div with&nbsp; 
+                            Set your divs sticky with with&nbsp; 
                             <a target="_blank" href="https://www.npmjs.org/package/react-stickydiv">react-stickydiv</a>
                         </StickyDiv>
 
                     </div>
                     <div className="article col-sm-12 col-xs-12 col-md-10 col-lg-10">
+                        <div className="myspinner" />
                         {this.props.activeRouteHandler()}
                     </div>
                     <div 

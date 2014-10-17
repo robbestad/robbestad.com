@@ -12,9 +12,7 @@
   to {transform: rotate(360deg);}
 }
 
-@-webkit-keyframes spinner {
-  to {-webkit-transform: rotate(360deg);}
-}
+
 .spinner:not(:required):before {
   content: '';
   border-radius: 50%;
@@ -32,39 +30,12 @@
   height: 64px;
 }
 
+.myspinner{
+  width: 120px;
+  text-align: center;
+  margin: 0 auto;
+  height: 128px;
+  background: url(/img/myspinner.gif);
+}
 
 
-
-
-
-
-
-
-
-//
-//@keyframes react-spinner_spin {
-//  0% {
-//    opacity: 1;
-//  }
-//  100% {
-//    opacity: 0.15;
-//  }
-//}
-//
-//@-moz-keyframes react-spinner_spin {
-//  0% {
-//    opacity: 1;
-//  }
-//  100% {
-//    opacity: 0.15;
-//  }
-//}
-//
-//@-webkit-keyframes react-spinner_spin {
-//  0% {
-//    opacity: 1;
-//  }
-//  100% {
-//    opacity: 0.15;
-//  }
-//}

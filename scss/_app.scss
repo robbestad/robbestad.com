@@ -60,7 +60,6 @@ ul.frontPage {
 .sidebar {
   z-index: 1;
   /*background-color: $white;*/
-  min-width: 100px;
   padding: 10% 1% 0 1%;
   transition: visibility 0s 2s, opacity 2s linear;
 }
@@ -77,8 +76,8 @@ a {
 }
 
 .article {
-  transition: visibility 0s 2s, opacity 2s linear;
-  transition: 3s;
+  /*transition: visibility 0s 2s, opacity 2s linear;*/
+  transition: 1s;
   border-radius: 5px 0 0 0;
   a {
     font-weight: bold;
@@ -140,6 +139,15 @@ a {
   }
   padding: 25px 0 25px 0;
 }
+
+.myspinner{
+  width: 64px;
+  text-align: center;
+  margin: 0 auto;
+  height: 64px;
+  background: url(/img/myspinner.gif);
+}
+
 
 #footer {
   display: inline-block;
