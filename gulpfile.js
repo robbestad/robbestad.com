@@ -29,6 +29,7 @@ gulp.task('test', shell.task([
     './node_modules/.bin/mocha -t 5000 -b -R spec spec.js'
 ]));
 gulp.task('lint', shell.task([
+    'jsinspect js/app.js',
     './node_modules/.bin/jsxhint -c .jshintrc ./index.js'
 ]));
 gulp.task('release-minor', shell.task([

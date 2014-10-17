@@ -17,7 +17,6 @@ var jQuery = require('jquery');
 var appr = require('./app-ready');
 var moment = require ('moment');
 var StickyDiv = require ('react-stickydiv');
-var Spinner = require ('./components/spinner.react');
 
 var api = 'http://api.robbestad.com/robbestad';
 var _blogData = {};
@@ -322,7 +321,7 @@ var App = React.createClass({
             blogitems: BlogStore.getItems(),
             loading: false
         });
-        window.spinner.hideSpinner();
+        if(undefined !== window.spinner) window.spinner.hideSpinner();
     },
 
     render: function() {
@@ -333,6 +332,7 @@ var App = React.createClass({
                 <Menu />
 
                 <Sidebar sidebarVisible={sidebarVisible} width={sidebarWidth} />
+            
                 <section className="container-fluid">
                   <div className="row-fluid">
                     <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
@@ -343,14 +343,13 @@ var App = React.createClass({
                     </div>
                     <div className="article col-sm-12 col-xs-12 col-md-10 col-lg-10">
                         {this.props.activeRouteHandler()}
-                        <Spinner />
                     </div>
-                    <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
-
-
+                    <div 
+                        className="sidebar col-md-1 col-lg-1 
+                            hidden-xs hidden-sm">
                     </div>
-                </div>
-            </section>
+                    </div>
+                </section>
 
                 <footer id="footer" className="col-xs-12 col-md-12 col-sm-12 col-lg-12 ">
                     <div id="footer-inside" className="innerXsPadding">
@@ -441,9 +440,9 @@ var Index = React.createClass({
 
                 <ul className="frontPage" >
 
-                    <li>
-                        <h1 className="entry-title">www</h1>
-                        <p className="fp-desc">Things to read for app- &amp; game coders.</p>
+                    <li key="appIndex">
+                        <h1 className="entry-title">Robbestad.com</h1>
+                        <p className="fp-desc">A blog about app- &amp; game programming</p>
                     </li>
                         {blogitems}
                     </ul>
