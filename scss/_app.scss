@@ -75,6 +75,9 @@ a {
   color: #000000;
 }
 
+.articleContent{
+  visibility: hidden; 
+}
 .article {
   /*transition: visibility 0s 2s, opacity 2s linear;*/
   transition: 1s;
@@ -144,8 +147,16 @@ a {
   width: 64px;
   text-align: center;
   margin: 0 auto;
+  margin-top: 50px;
   height: 64px;
   background: url(/img/myspinner.gif);
+  .hidden{
+    padding: 0;
+    height: 0;
+    width: 0;
+    margin: 0;
+    visibility: hidden;
+  }
 }
 
 

@@ -311,7 +311,17 @@ var App = React.createClass({
             .delay(500).queue(function(){
             jQuery(this).removeClass("animated fadeIn").dequeue();
         });
-        jQuery(".myspinner").css("visibility","hidden");
+         if(!jQuery(".myspinner").hasClass("hidden")){
+            jQuery(".articleContent").removeClass("animated fadeIn")
+            jQuery(".myspinner").addClass("animated bounceOut")
+            .delay(500).queue(function(){
+            jQuery(".articleContent").addClass("animated fadeIn");
+            jQuery(".articleContent").css("visibility","visible");
+
+            jQuery(this).addClass("hidden").dequeue();
+            });
+        }
+
 
     },
     componentDidMount: function() {
@@ -332,7 +342,16 @@ var App = React.createClass({
             loading: false
         });
 
-        jQuery(".myspinner").css("visibility","hidden");
+        if(!jQuery(".myspinner").hasClass("hidden")){
+            jQuery(".articleContent").removeClass("animated fadeIn")
+            jQuery(".myspinner").addClass("animated bounceOut")
+            .delay(500).queue(function(){
+            jQuery(".articleContent").addClass("animated fadeIn");
+            jQuery(".articleContent").css("visibility","visible");
+            jQuery(this).addClass("hidden").dequeue();
+            });
+        }
+
         //if(undefined !== window.spinner) window.spinner.hideSpinner();
     },
 
@@ -375,7 +394,9 @@ var App = React.createClass({
                     </div>
                     <div className="article col-sm-12 col-xs-12 col-md-10 col-lg-10">
                         <div className="myspinner" />
+                        <section className="articleContent">
                         {this.props.activeRouteHandler()}
+                        </section>
                     </div>
                     <div 
                         className="sidebar col-md-1 col-lg-1 
