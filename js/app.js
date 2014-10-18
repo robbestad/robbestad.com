@@ -312,10 +312,11 @@ var App = React.createClass({
             jQuery(this).removeClass("animated fadeIn").dequeue();
         });
          if(!jQuery(".myspinner").hasClass("hidden")){
-            jQuery(".articleContent").removeClass("animated fadeIn")
+            jQuery(".articleContent").removeClass("animated fadeIn");
             jQuery(".myspinner").addClass("animated bounceOut")
             .delay(500).queue(function(){
             jQuery(".articleContent").addClass("animated fadeIn");
+            jQuery("#footer").css("visibility","visible");
             jQuery(".articleContent").css("visibility","visible");
 
             jQuery(this).addClass("hidden").dequeue();
@@ -348,6 +349,7 @@ var App = React.createClass({
             .delay(500).queue(function(){
             jQuery(".articleContent").addClass("animated fadeIn");
             jQuery(".articleContent").css("visibility","visible");
+            jQuery("#footer").css("visibility","visible");
             jQuery(this).addClass("hidden").dequeue();
             });
         }

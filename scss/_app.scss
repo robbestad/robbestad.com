@@ -78,6 +78,10 @@ a {
 .articleContent{
   visibility: hidden; 
 }
+#footer{
+  visibility: hidden;
+}
+
 .article {
   /*transition: visibility 0s 2s, opacity 2s linear;*/
   transition: 1s;
