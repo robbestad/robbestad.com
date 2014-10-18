@@ -369,9 +369,11 @@ var App = React.createClass({
         }
 
         var center={
-            textAlign:'center',
-            margin:'0 auto',
-            minWidth:'100px'
+            width:'100px',
+            textJustify: 'inherit',
+            textTransform: 'capitalize',
+            textAlign: 'justify',
+            fontSize: '18px'
         }
 
         return (
