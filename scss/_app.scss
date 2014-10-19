@@ -8,11 +8,16 @@
 html, body {
   font-family: 'freight-text-pro', Georgia, serif;
   background: url(/img/f2f2f2_bg.png) #f2f2f2;
-  line-height: 22px;
   &::selection {
     background: #DD574C;
     color: #fff;
   }
+  -webkit-font-smoothing: antialiased;
+  color: #000;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: .8px;
+  word-break: break-word;
 }
 
 .menuHeader{
@@ -98,13 +103,17 @@ a {
   }
   font-family: 'freight-text-pro', Georgia, serif;
   font-size: 22px;
+  line-height: 36px;
   font-style: normal;
   font-variant: normal;
   font-weight: normal;
-  line-height: 33px;
+//  line-height: 33px;
   &::selection {
     background: #DD574C;
     color: #fff;
+  }
+  img{
+    padding: 30px 0;
   }
 }
 
@@ -192,7 +201,7 @@ h1 {
   font-weight: 800;
   text-transform: uppercase;
   font-size: 52px;
-  line-height: 62px;
+  line-height: 48px;
   text-align: center;
   margin: 0;
   font-family: 'Raleway', 'freight-text-pro', 'Helvetica Neue', Helvetica, sans-serif;
@@ -213,7 +222,7 @@ h2 {
   font-weight: 800;
   text-transform: uppercase;
   font-size: 52px;
-  line-height: 62px;
+  line-height: 48px;
   text-align: center;
   margin: 0;
   font-family: 'Raleway', 'freight-text-pro', 'Helvetica Neue', Helvetica, sans-serif;
@@ -257,7 +266,7 @@ h2 {
 @media only screen and (max-width: 320px) {
   h2 {
     font-size: 32px;
-    line-height: 40px;
+    line-height: 48px;
   }
 }
 

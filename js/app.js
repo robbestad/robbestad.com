@@ -165,34 +165,13 @@ var Menu = React.createClass({
     render: function () {
         var width = ((document.body.clientWidth) / 3) - 2;
 
-        var liStyle = {
-            float: 'left',
-            width: width+"px",
-            padding: '15px 5px',
-            borderTop: '0',
-            height:'40px',
-            zIndex: 2
-        };
-
-        var ulStyle = {
-            display: 'block',
-            height: '30px',
-            marginBottom: '10px',
-            listStyle: 'none outside none',
-            margin: '0px',
-            padding: '0px',
-            textAlign: 'center',
-            zIndex:2
-        };
-
-        var liFontStyle = {
-            width: width+"px"
-        };
 
         var divStyle= {
             display: 'block',
             position: 'fixed',
             top: '0px',
+            height:'40px',
+
             width: document.body.clientWidth+"px",
             zIndex:5,
             borderRadius: '2px',
@@ -201,27 +180,27 @@ var Menu = React.createClass({
             boxShadow:'0 1px 3px #dadada'
         };
 
-
-        var inFront={
-            zIndex:3
-        };
-
+        var centerStyle={
+            display: 'block',
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            fontFamily: 'Raleway',
+            fontWeight:'800',
+            height:'40px',
+            padding: '15px 5px',
+            width: '100%',
+            textAlign: 'center',
+            zIndex:-1
+        }
         var top=0;
+
 
         return (
             <div style={divStyle} id="menu" >
-                <ul style={ulStyle}>
-                    <li style={liStyle}>
-                        <div style={inFront}
-                            className="" id="hamburgerButton"  />
-                    </li>
-                    <li  style={liFontStyle} className="menuHeader">
-                        <div style={inFront}>Robbestad.com</div>
-                    </li>
-                    <li style={liFontStyle}>
-                        <div className="Layout-search fa fa-search" />
-                    </li>
-                </ul>
+                <div  className="" id="hamburgerButton"  />
+                <div style={centerStyle}>Robbestad.com</div>
+
             </div>
             );
 
@@ -389,7 +368,7 @@ var App = React.createClass({
                         style={center}>
                             <a target="_blank" href="https://www.npmjs.org/package/react-stickydiv">
                             <img src="img/npm_1x.png" 
-                            srcset="img/npm_1x.png 480w, img/npm_2x.png 640w, img/npm_3x.png 800w" 
+                            srcset="img/npm_1x.png 480w, img/npm_2x.png 640w, img/npm_3x.png 800w"
                             width="100" height="39" /> </a>
                             Set your divs sticky with&nbsp;
                             <a target="_blank" href="https://www.npmjs.org/package/react-stickydiv">react-stickydiv</a>
