@@ -244,7 +244,8 @@ $(document).ready(function () {
             container.appendChild(ex);
             ex.style.backgroundColor = bgColor;
             ex.style.opacity = 1.0;
-            ex.style.marginTop = (size * -0.01) + 'px';
+            ex.style.marginTop = (size * 0.5) + 'px';
+            ex.style.marginLeft = '15px';
             new hamburgerButton.HamburgerButton(ex, size, color);
         })(document.getElementById('hamburgerButton'), 28, '#000000');
     })();

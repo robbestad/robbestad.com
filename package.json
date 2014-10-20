@@ -23,6 +23,7 @@
     "browserify": "~4.2.2",
     "compression": "^1.1.0",
     "envify": "~2.0.1",
+    "es5-shim": "^4.0.3",
     "express": "^4.9.5",
     "express-stormpath": "^0.4.5",
     "flux": "^2.0.0",
@@ -39,11 +40,11 @@
     "react-sticky": "^1.0.4",
     "react-stickydiv": "^1.0.3",
     "reactify": "~0.14.0",
-    "es5-shim": "^4.0.3",
     "rebound": "0.0.10",
     "resolve": "~0.6.1",
     "swig": "^1.4.2",
     "uglify-js": "~2.4.15",
+    "underscore": "^1.7.0",
     "watchify": "~0.10.2"
   },
   "browserify": {

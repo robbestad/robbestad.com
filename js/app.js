@@ -3,6 +3,7 @@ var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;
+var _ = require('underscore');
 
 //var sweetAlert = require("./alert");
 //sweetAlert("Oops...", "Something went wrong!", "error");
@@ -170,7 +171,7 @@ var Menu = React.createClass({
             display: 'block',
             position: 'fixed',
             top: '0px',
-            height:'40px',
+            height:'70px',
 
             width: document.body.clientWidth+"px",
             zIndex:5,
@@ -187,7 +188,7 @@ var Menu = React.createClass({
             left: '0',
             fontFamily: 'Raleway',
             fontWeight:'800',
-            height:'40px',
+            height:'70px',
             padding: '15px 5px',
             width: '100%',
             textAlign: 'center',
@@ -364,7 +365,7 @@ var App = React.createClass({
                 <section className="container-fluid">
                   <div className="row-fluid">
                     <div className="sidebar col-md-1 col-lg-1 hidden-xs hidden-sm">
-                        <StickyDiv togglepoint="64" top="45" width="100" 
+                        <StickyDiv togglepoint="32" top="79" width="100"
                         style={center}>
                             <a target="_blank" href="https://www.npmjs.org/package/react-stickydiv">
                             <img src="img/npm_1x.png" 
@@ -444,7 +445,7 @@ var Index = React.createClass({
         jQuery( ".frontPage" ).addClass( "visible animated fadeIn" );
     },
     render: function() {
-        var blogitems = this.state.blogitems.slice(0,5).map(function(article) {
+        var blogitems = this.state.blogitems.slice(0,1).map(function(article) {
             var url = article.url.split("/");
             var urlParams={
                 year:url[3],
@@ -457,30 +458,25 @@ var Index = React.createClass({
             };
 
             var padding={
-                paddingTop:'35px'
-            }
+                paddingBottom:'35px'
+            };
 
             var updated = moment(new Date(article.updated).getTime()).fromNow();
+            var content = article.content;
+
 //            var excerpt = article.content.match(/<q(.*?)<\/q/);
 
             return (<section className="">
                 <li key={article.id} style={padding}>
                     <div className="date-title">{updated}</div>
-                <Link to="blog" params={urlParams}>
                     <h2 className="fp-title">{article.title}</h2>
-                </Link>
+                    <section dangerouslySetInnerHTML={{__html: content}} />
                 </li>
             </section>)
         });
         return (
             <section className="innerXsPadding">
-
                 <ul className="frontPage" >
-
-                    <li key="appIndex">
-                        <h1 className="entry-title">Robbestad.com</h1>
-                        <p className="fp-desc">A blog about app- &amp; game programming</p>
-                    </li>
                         {blogitems}
                     </ul>
             </section>
@@ -541,7 +537,7 @@ var Article = React.createClass({
                     <section dangerouslySetInnerHTML={{__html: content}} />
                     <div id="disqus_thread"></div>
         </section>
-            );
+         );
     }
 });
 
@@ -549,7 +545,8 @@ var Sidebar = React.createClass({
     getInitialState: function() {
         return {
             blogitems: BlogStore.getItems(),
-            loading: true
+            loading: true,
+            searchInput:''
         };
     },
     componentWillMount: function () {
@@ -575,8 +572,40 @@ var Sidebar = React.createClass({
             sidebarVisible: false
         });
     },
+    onChange: function(e){
+        var state=this.state;
+        state.searchInput= e.target.value;
+        this.setState(state);
+    },
     render: function() {
-        var blogitems = this.state.blogitems.slice(0,9).map(function(article) {
+        var searchItems,
+            searchInput = this.state.searchInput;
+
+        if(searchInput.length>0){
+
+            var articles = _.values(this.state.blogitems)
+
+//            var searchFilter = _.where(articles, {title: searchInput}).length > 0;
+            searchItems = articles.map(function(article) {
+                if(article.title.toLowerCase().indexOf(searchInput) === -1){
+                    return
+                }
+                var url = article.url.split("/");
+
+                var urlParams={
+                    year:url[3],
+                    month:url[4],
+                    name:url[5]
+                };
+
+                return <li key={article.id}><Link to="blog" className="menuitem"
+                params={urlParams}>{article.title}</Link></li>
+           });
+
+
+        }
+
+        var blogItems = this.state.blogitems.slice(0,14).map(function(article) {
             var url = article.url.split("/");
 
             var urlParams={
@@ -592,7 +621,7 @@ var Sidebar = React.createClass({
         var style={
             display:'block',
             visibility:'visible',
-            marginTop:'40px',
+            marginTop:'70px',
 //            position:'fixed',
 //            height:'100%',
             position:'absolute',
@@ -608,7 +637,7 @@ var Sidebar = React.createClass({
             style={
                 display:'block',
                 visibility:'visible',
-                marginTop:'40px',
+                marginTop:'70px',
                 position:'relative',
                 left:0,
                 height:'100%',
@@ -623,7 +652,7 @@ var Sidebar = React.createClass({
                 visibility: 'hidden',
                 height: "100%",
                 width: "0px",
-                marginTop: '40px',
+                marginTop: '70px',
                 zIndex: 0,
                 position: 'absolute',
                 left: 0
@@ -632,22 +661,37 @@ var Sidebar = React.createClass({
         var bg={
             borderRight:'1px solid #aaaaaa',
             borderLeft:'1px solid #aaaaaa',
-            boxShadow:'3px 0px 0px 0px #FFFFFF',
+            boxShadow:'3px 0px 0px 0px #FFFFFF'
         };
         var noPadding={
             padding:0
-        }
+        };
+
+
         return (
             <div style={style} className="responsiveList sideBar">
+                <section className="col-xs-12 col-sm-12 hidden-md hidden-lg "  style={bg}>
+                    <section className="searchSidebar" >
+                        <h3>Search</h3>
+                        <p><input type="text" name="search" value={searchInput}
+                        onChange={this.onChange} /></p>
+                        <p>{searchItems}</p>
+
+                    </section>
+                  </section>
                 <section className="col-xs-12 col-sm-12 col-md-6 col-lg-6" style={noPadding}>
                 <ul className="slider sliderItem" style={bg} >
-                {blogitems}
+                {blogItems}
                  </ul>
                  </section>
                 <section className="hidden-xs hidden-sm col-md-6 col-lg-6">
 
                     <h3>Search</h3>
-                    <p>Search...</p>
+                    <p><input type="text" name="search" value={searchInput}
+                    onChange={this.onChange} /></p>
+                    <ul className="slider sliderItem" >
+                        {searchItems}
+                    </ul>
                 </section>
             </div>
             )
