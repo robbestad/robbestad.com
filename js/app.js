@@ -580,10 +580,6 @@ var Sidebar = React.createClass({
     render: function() {
         var searchItems,
             searchInput = this.state.searchInput;
-        var noPadding={
-            padding:0
-        };
-        
         if(searchInput.length>0){
 
             var articles = _.values(this.state.blogitems)
@@ -594,6 +590,9 @@ var Sidebar = React.createClass({
                     return
                 }
                 var url = article.url.split("/");
+                var noPadding={
+                    padding:0
+                };
 
                 var urlParams={
                     year:url[3],
@@ -667,6 +666,10 @@ var Sidebar = React.createClass({
             borderRight:'1px solid #aaaaaa',
             borderLeft:'1px solid #aaaaaa',
             boxShadow:'3px 0px 0px 0px #FFFFFF'
+        };
+
+        var noPadding={
+            padding:0
         };
 
 
