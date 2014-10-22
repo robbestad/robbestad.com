@@ -5,7 +5,6 @@ var express = require('express')
 //    stormpath = require('express-stormpath')
     , swig  = require('swig')
     , compress = require('compression')
-    //$ = require('jquery');
     , app = express();
     app.use(compress());   
 var css = ['node_modules/bootstrap/dist/css/bootstrap.css',
