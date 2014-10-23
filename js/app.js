@@ -601,7 +601,7 @@ var Sidebar = React.createClass({
                 };
 
                 return <li key={article.id}><Link to="blog"
-                style={nopadding}
+                style={noPadding}
                 className="menuitem"
                 params={urlParams}>{article.title}</Link></li>
            });
