@@ -42,7 +42,7 @@ app.get('/', function(req, res) {
     }
 });
 
-app.get(/.php/, function(req, res) {
+app.get(/\.php/, function(req, res) {
     if ('production' == app.get('env')) {
         res.sendFile(__dirname +'/index.prod.html');
     } else {
