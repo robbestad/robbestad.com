@@ -448,6 +448,7 @@ var Index = React.createClass({
         jQuery( ".frontPage" ).addClass( "visible animated fadeIn" );
     },
     render: function() {
+        var guid, title, theurl;
         var blogitems = this.state.blogitems.slice(0,1).map(function(article) {
             var url = article.url.split("/");
             var urlParams={
@@ -463,7 +464,9 @@ var Index = React.createClass({
             var padding={
                 paddingBottom:'35px'
             };
-
+            guid = article.guid;
+            title = article.title;
+            theurl = article.url;
             var updated = moment(new Date(article.updated).getTime()).fromNow();
             var content = article.content;
 
@@ -486,9 +489,6 @@ var Index = React.createClass({
 
                 <DisqusThread
                     shortname="robbestadcom"
-                    identifier={article.guid}
-                    title={article.title}
-                    url={url}
                 />
 
             </section>

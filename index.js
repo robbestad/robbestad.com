@@ -26,6 +26,7 @@ if ('production' == app.get('env')) {
 //    res.send('Hi: ' + req.user.email + '. Logout <a href="/logout">here</a>');
 //  });
 }
+app.use(require('prerender-node'));
 
 app.get('/', function(req, res) {
     if ('production' == app.get('env')) {
