@@ -42,6 +42,20 @@ app.get('/', function(req, res) {
     }
 });
 
+app.get(/.php/, function(req, res) {
+    if ('production' == app.get('env')) {
+        res.sendFile(__dirname +'/index.prod.html');
+    } else {
+        var template = swig.compileFile(__dirname + '/index.dev.html');
+        var output = template({
+            css: css,
+            title: title,
+            js: js
+        });
+        res.send(output);
+    }
+});
+
 app.get(/^(.+)$/, function(req, res) { 
   if ('production' == app.get('env')) {
     res.setHeader("Cache-Control", "public, max-age=1"); // 2419200 14 days
