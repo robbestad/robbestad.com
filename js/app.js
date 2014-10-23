@@ -19,9 +19,6 @@ var moment = require ('moment');
 var StickyDiv = require ('react-stickydiv');
 var DisqusThread = require('react-disqus-thread');
 
-var _hljs = require("code-highlighter");
-var hljs = require("highlight.js");
-
 
 var api = 'http://api.robbestad.com/robbestad';
 var _blogData = {};
@@ -544,15 +541,7 @@ var Article = React.createClass({
         //var published = moment(new Date(article.published).getTime()).fromNow();
         var updated = moment(new Date(article.updated).getTime()).fromNow();
         var content = article.content;
-        //
-        //var h=jQuery('pre code').each(function(i, block) {
-        //    hljs.highlightBlock(block);
-        //});
-        //var h=jQuery('pre code').each(function(i, block) {
-        //    hljs.highlightBlock(block);
-        //});
-        //replace(/[^A-Za-z\d_-]+/g, '');
-        //content.replace(/[^<pre>]+/g,hljs.highlightBlock($&));
+
         return (
                 <section className="innerXsPadding">
                     <div className="date-title">{updated}</div>

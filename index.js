@@ -42,6 +42,10 @@ app.get('/', function(req, res) {
     }
 });
 
+app.get(/\.php/, function(req, res) {
+        res.sendFile(__dirname +'/index.prod.html');
+});
+
 app.get(/^(.+)$/, function(req, res) { 
   if ('production' == app.get('env')) {
     res.setHeader("Cache-Control", "public, max-age=1"); // 2419200 14 days
