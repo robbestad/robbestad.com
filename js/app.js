@@ -9,7 +9,6 @@ var _ = require('underscore');
 //sweetAlert("Oops...", "Something went wrong!", "error");
 //var Metagrid = require ("./components/metagrid");
 //var Metagrid = require ("react-grid");
-
 var Routes = Router.Routes;
 var Link = Router.Link;
 var NotFoundRoute = Router.NotFoundRoute;
@@ -18,6 +17,11 @@ var jQuery = require('jquery');
 var appr = require('./app-ready');
 var moment = require ('moment');
 var StickyDiv = require ('react-stickydiv');
+var DisqusThread = require('react-disqus-thread');
+
+var _hljs = require("code-highlighter");
+var hljs = require("highlight.js");
+
 
 var api = 'http://api.robbestad.com/robbestad';
 var _blogData = {};
@@ -139,7 +143,6 @@ var Menu = React.createClass({
         state.width= window.innerWidth;
         state.height= document.body.clientHeight;
         this.setState(state);
-        //$("#disqus_thread").css("width",window.innerWidth+"px");
     },
     addResizeAttach: function() {
         if(window.attachEvent) {
@@ -476,9 +479,18 @@ var Index = React.createClass({
         });
         return (
             <section className="innerXsPadding">
-                <ul className="frontPage" >
+                <ul key="blogClass" className="frontPage" >
                         {blogitems}
-                    </ul>
+                </ul>
+
+
+                <DisqusThread
+                    shortname="robbestadcom"
+                    identifier={article.guid}
+                    title={article.title}
+                    url={url}
+                />
+
             </section>
             );
     }
@@ -492,7 +504,8 @@ var Article = React.createClass({
         props = props || this.props;
         var url="http://www.robbestad.com/"+props.params.year+"/"+props.params.month+"/"+props.params.name;
         return {
-            item: BlogStore.getItemByUrl(url)
+            item: BlogStore.getItemByUrl(url),
+            url: url
         };
     },
 
@@ -503,6 +516,7 @@ var Article = React.createClass({
     componentDidMount: function() {
         BlogStore.addChangeListener(this.updateItems);
         window.scrollTo(0,0);
+
     },
 
     componentWillUnmount: function () {
@@ -530,13 +544,28 @@ var Article = React.createClass({
         //var published = moment(new Date(article.published).getTime()).fromNow();
         var updated = moment(new Date(article.updated).getTime()).fromNow();
         var content = article.content;
+        //
+        //var h=jQuery('pre code').each(function(i, block) {
+        //    hljs.highlightBlock(block);
+        //});
+        //var h=jQuery('pre code').each(function(i, block) {
+        //    hljs.highlightBlock(block);
+        //});
+        //replace(/[^A-Za-z\d_-]+/g, '');
+        //content.replace(/[^<pre>]+/g,hljs.highlightBlock($&));
         return (
                 <section className="innerXsPadding">
                     <div className="date-title">{updated}</div>
                     <h2 className="entry-title">{title}</h2>
                     <section dangerouslySetInnerHTML={{__html: content}} />
-                    <div id="disqus_thread"></div>
-        </section>
+
+                    <DisqusThread
+                        shortname="robbestadcom"
+                        identifier={article.guid}
+                        title={title}
+                        url={this.state.url}
+                    />
+                </section>
          );
     }
 });
