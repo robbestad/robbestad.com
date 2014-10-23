@@ -8,7 +8,7 @@ var _ = require('underscore');
 //var sweetAlert = require("./alert");
 //sweetAlert("Oops...", "Something went wrong!", "error");
 //var Metagrid = require ("./components/metagrid");
-var Metagrid = require ("react-grid");
+//var Metagrid = require ("react-grid");
 
 var Routes = Router.Routes;
 var Link = Router.Link;
