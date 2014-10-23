@@ -26,7 +26,7 @@ if ('production' == app.get('env')) {
 //    res.send('Hi: ' + req.user.email + '. Logout <a href="/logout">here</a>');
 //  });
 }
-app.use(require('prerender-node'));
+//app.use(require('prerender-node'));
 
 app.get('/', function(req, res) {
     if ('production' == app.get('env')) {
@@ -43,17 +43,7 @@ app.get('/', function(req, res) {
 });
 
 app.get(/\.php/, function(req, res) {
-    if ('production' == app.get('env')) {
         res.sendFile(__dirname +'/index.prod.html');
-    } else {
-        var template = swig.compileFile(__dirname + '/index.dev.html');
-        var output = template({
-            css: css,
-            title: title,
-            js: js
-        });
-        res.send(output);
-    }
 });
 
 app.get(/^(.+)$/, function(req, res) { 
