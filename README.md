@@ -1,5 +1,15 @@
 # Robbestad.com
 
+## New install
+
+
+Run 
+'''
+git remote add heroku git@heroku.com:robbestad-blog.git
+heroku keys:add
+'''
+
+
 > Completely reactified
 
 > Uses react-router
