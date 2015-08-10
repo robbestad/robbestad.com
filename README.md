@@ -1,14 +1,15 @@
 # Robbestad.com
 
 ## New install
-
-
-Run 
 '''
+heroku plugins:install git://github.com/ddollar/heroku-accounts.git
+heroku accounts:add personal --auto
 git remote add heroku git@heroku.com:robbestad-blog.git
 heroku keys:add
+heroku accounts:set personal
 '''
 
+## News
 
 > Completely reactified
 
